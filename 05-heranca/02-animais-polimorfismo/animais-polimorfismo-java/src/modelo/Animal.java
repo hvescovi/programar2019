@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.Date;
+import util.MyDate;
 
 public abstract class Animal {
 
@@ -13,8 +14,12 @@ public abstract class Animal {
         this.dataNascimento = dataNascimento;
     }    
     public Animal(Date nascimento) {
-        setDataNascimento(nascimento);
-    } 
+        this.dataNascimento = nascimento;
+    }
+    @Override
+    public String toString(){
+        return "Nascido em: "+(new MyDate(dataNascimento)).toString();
+    }
     
     public abstract void comer();
 }

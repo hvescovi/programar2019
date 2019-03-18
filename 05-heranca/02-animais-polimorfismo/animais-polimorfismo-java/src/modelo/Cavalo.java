@@ -11,4 +11,8 @@ public class Cavalo extends Animal {
     public void comer() {
         System.out.println("animal mastigando...");
     }
+    @Override
+    public String toString(){
+        return "Cavalo " + super.toString();
+    }    
 }
