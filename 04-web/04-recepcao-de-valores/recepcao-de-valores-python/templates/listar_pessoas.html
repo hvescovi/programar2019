@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Listagem de Pessoas</title>
+    </head>
+    <body>
+        
+        <a href=/form_incluir_pessoa>Incluir</a> <br><br>
+
+        {% for pessoa in lista: %}
+            {{ pessoa.nome }} <br>
+        {% endfor %}
+        
+    </body>
+</html>
