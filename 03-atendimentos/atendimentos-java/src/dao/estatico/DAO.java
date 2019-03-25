@@ -6,6 +6,7 @@ import modelo.Cliente;
 import modelo.Produto;
 import modelo.Servico;
 import modelo.Venda;
+import util.MyDate;
 
 public class DAO {
     
@@ -34,7 +35,7 @@ public class DAO {
         v.qtd = 2;
         
         Atendimento a1 = new Atendimento(manel);
-        a1.data = "25/02/2019";
+        a1.data = new MyDate(25,02,2019);
         a1.hora = "21:33";
         //a1.cli = manel;
         a1.servicos.add(s);
@@ -71,7 +72,7 @@ public class DAO {
         v.qtd = 2;
         
         Atendimento a1 = new Atendimento(manel);
-        a1.data = "25/02/2019";
+        a1.data = new MyDate(25,02,2019);
         a1.hora = "21:33";
         //a1.cli = manel;
         a1.servicos.add(s);
@@ -100,7 +101,7 @@ public class DAO {
         v2.qtd = 2;
         
         Atendimento a2 = new Atendimento(manel);
-        a2.data = "20/02/2019";
+        a2.data = new MyDate(20,02,2019);
         a2.hora = "20:33";
         //a1.cli = manel;
         a2.servicos.add(s);

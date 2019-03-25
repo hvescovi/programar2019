@@ -2,10 +2,11 @@ package modelo;
 
 import dao.estatico.DAO;
 import java.util.ArrayList;
+import util.MyDate;
 
 public class Atendimento {
 
-    public String data;
+    public MyDate data;
     public String hora;
     public Cliente cli;
     public ArrayList<Servico> servicos = new ArrayList();
