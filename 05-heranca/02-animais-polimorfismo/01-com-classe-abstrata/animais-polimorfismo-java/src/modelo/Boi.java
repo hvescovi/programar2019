@@ -5,9 +5,6 @@ import util.MyDate;
 
 public class Boi extends Animal {
 
-    public Boi(Date nascimento) {
-        super(nascimento);
-    }
     public int idadeEmMeses(){
         MyDate m = new MyDate(getDataNascimento());
         return m.monthsBetween(new Date());

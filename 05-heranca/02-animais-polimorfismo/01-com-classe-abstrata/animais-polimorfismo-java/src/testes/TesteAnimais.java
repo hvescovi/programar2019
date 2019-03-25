@@ -7,7 +7,7 @@ import util.MyDate;
 public class TesteAnimais {
    
     public static void main(String[] args) {        
-        Boi b = new Boi((new MyDate(01, 01, 2018)).data);
+        Boi b = new Boi();
         Cavalo c = new Cavalo((new MyDate(01, 02, 2018)).data);
         System.out.println(b);
         System.out.println(c);

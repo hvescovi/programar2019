@@ -13,6 +13,9 @@ public abstract class Animal {
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }    
+    public Animal(){
+        this.dataNascimento = new MyDate().data;
+    }
     public Animal(Date nascimento) {
         this.dataNascimento = nascimento;
     }
