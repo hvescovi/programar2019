@@ -1,0 +1,95 @@
+DIAGRAMA DE ATENDIMENTOS:
+
+https://www.planttext.com/
+
+@startuml
+
+class Cliente {
+  +String cpf
+  +String nome
+}
+
+class Produto {
+  +String descricao
+  +float preco
+  +String unidade
+  +float qtdEstoque
+}
+
+class Servico {
+  +String descricao
+  +float preco
+}
+
+class Venda {
+  +Produto prod
+  +float qtd
+}
+
+class Atendimento {
+  +MyDate data
+  +String hora
+  +Cliente cli
+  +ArrayList<Servico> servicos
+  +ArrayList<Venda> vendas
+  +float total()
+}
+
+Atendimento "1..*" *-- "1" Cliente
+Atendimento "1" o-- "0..*" Venda
+Atendimento "1..*" *-- "1..*" Servico
+Venda "1" *-- "1" Produto
+
+@enduml
+
+
+
+ATENDIMENTOS, COM HERANÇA
+
+@startuml
+
+class Cliente {
+  +String cpf
+  +String nome
+}
+
+abstract class Item {
+  +String descricao
+  +float preco
+  +String unidade
+}
+
+Item <|-- Produto
+Item <|-- Servico
+
+class Servico {
+}
+
+class Produto {
+  +float estoque
+}
+
+class Venda {
+  +Item item
+  +float qtd
+}
+
+class Atendimento {
+  +MyDate data
+  +String hora
+  +Cliente cli
+  +ArrayList<Venda> vendas
+  +float total()
+}
+
+Atendimento "1..*" *-- "1" Cliente
+Atendimento "1" o-- "0..*" Venda
+Venda "1" *-- "1" Item
+
+
+@enduml
+
+
+
+
+
