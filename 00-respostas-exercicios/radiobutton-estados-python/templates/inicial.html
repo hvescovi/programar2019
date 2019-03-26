@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Radiobutton</title>
+    </head>
+    <body>
+        <form action=mostrar_selecao>
+        Escolha um estado para visitar:
+        <br>
+        {% for estado in estados %}
+          <input type=radio name=estado value="{{ estado[0] }}">{{ estado[1]}}
+          <br>
+        {% endfor %}
+        <button type="submit">Enviar</button>
+    </form>
+    </body>
+</html>
