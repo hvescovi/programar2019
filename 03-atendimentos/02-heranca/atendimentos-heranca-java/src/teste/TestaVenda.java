@@ -1,6 +1,5 @@
 package teste;
 
-import modelo.Item;
 import modelo.Produto;
 import modelo.Venda;
 

@@ -9,7 +9,6 @@ public class Atendimento {
     public MyDate data;
     public String hora;
     public Cliente cli;
-    public ArrayList<Servico> servicos = new ArrayList();
     public ArrayList<Venda> vendas = new ArrayList();
     
     // não é possível haver atendimento sem cliente
@@ -21,9 +20,6 @@ public class Atendimento {
         
         String s = data+ " às "+hora + "; atendido: "+cli;
         
-        for (Servico serv : servicos) {
-            s += "\n"+serv;
-        }
         for (Venda v : vendas){
             s+= "\n"+v;
         }
@@ -43,15 +39,5 @@ public class Atendimento {
         return total;
     }
     
-    // TESTE DO ATENDIMENTO
-    public static void main(String[] args) {
-             
-        System.out.println("*** Teste do método retornarPrimeiroAtendimento");
-        System.out.println(DAO.retornarPrimeiroAtendimento());
-        
-        System.out.println("*** Teste do método retornarAtendimentos");
-        for (Atendimento a : DAO.retornarAtendimentos()) {
-            System.out.println(a);
-        }
-    }
+    
 }
