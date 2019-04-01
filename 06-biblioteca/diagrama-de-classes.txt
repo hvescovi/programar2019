@@ -1,24 +1,22 @@
-# https://www.planttext.com/
-
 @startuml
 
 class Emprestimo {
-  Livro livro
-  Usuario usuario
-  MyDate dataEmprestimo
-  MyDate dataDevolucao
+  livro: Livro
+  usuario: Usuario
+  dataEmprestimo: MyDate
+  dataDevolucao: MyDate
 }
 
 class Livro {
-  String titulo
-  String autores
-  String editora
-  String ano
+  titulo: String
+  autores: String
+  editora: String
+  ano: String
 }
 
 class Usuario {
-  String cpf
-  String nome
+  cpf: String
+  nome: String
 }
 
 Emprestimo *-- Livro
