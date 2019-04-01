@@ -1,0 +1,35 @@
+@startuml
+
+class Emprestimo {
+  Livro livro
+  Usuario usuario
+  MyDate dataEmprestimo
+  MyDate dataDevolucao
+}
+
+class Livro {
+  String titulo
+  String autores
+  String editora
+  String ano
+}
+
+abstract class Usuario {
+  String cpf
+  String nome
+}
+
+class Aluno {
+  String matricula
+}
+
+class Docente {
+  String siape
+}
+
+Emprestimo *-- Livro
+Emprestimo *-- Usuario
+Usuario <|-- Aluno
+Usuario <|-- Docente
+
+@enduml
