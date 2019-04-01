@@ -21,8 +21,8 @@ public class Emprestimo {
         Livro l = new Livro("Java: como programar (3a edição)",
                 "Paul Deitel, Harvel Deitel", 
                 "Pearson", "2001");
-        Usuario u = new Usuario("123.456.789-10","Jorge");
-        Emprestimo emp = new Emprestimo(l, u, new MyDate(01,04,2019));
+        Aluno a= new Aluno("123.456.789-10", "Maria", "201810012");
+        Emprestimo emp = new Emprestimo(l, a, new MyDate(01,04,2019));
         System.out.println(emp);
     }
 }

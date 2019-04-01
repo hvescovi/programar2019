@@ -1,6 +1,6 @@
 package modelo;
 
-public class Usuario {
+public abstract class Usuario {
 
     String cpf;
     String nome;
@@ -11,9 +11,5 @@ public class Usuario {
     }
     public String toString(){
         return cpf+":"+nome;
-    }
-    public static void main(String[] args) {
-        Usuario u = new Usuario("123.456.789-10","Jorge");
-        System.out.println(u);
     }
 }
