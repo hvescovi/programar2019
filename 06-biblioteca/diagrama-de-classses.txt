@@ -1,0 +1,27 @@
+# https://www.planttext.com/
+
+@startuml
+
+class Emprestimo {
+  Livro livro
+  Usuario usuario
+  MyDate dataEmprestimo
+  MyDate dataDevolucao
+}
+
+class Livro {
+  String titulo
+  String autores
+  String editora
+  String ano
+}
+
+class Usuario {
+  String cpf
+  String nome
+}
+
+Emprestimo *-- Livro
+Emprestimo *-- Usuario
+
+@enduml
