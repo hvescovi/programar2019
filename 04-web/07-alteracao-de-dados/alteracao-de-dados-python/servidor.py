@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect
 from modelo import Pessoa
 app = Flask(__name__)
 
@@ -95,6 +95,6 @@ def alterar_pessoa():
     # encaminha a execução para a página de listagem de dados
     # é utilizado um redirecionador, para que a URL do navegador
     # seja efetivamente alterada
-    return redirect(url_for("listar_pessoas"))
+    return redirect("listar_pessoas")
 
 app.run(debug=True)
