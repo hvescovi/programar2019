@@ -11,4 +11,6 @@ public class Pessoa {
     public void setEndereco(String e) {endereco = e; }
     public String getTelefone() { return telefone; }
     public void setTelefone(String t) {telefone = t; }
+    public Pessoa(String n, String e, String t) {
+        nome = n; endereco = e; telefone = t;   }
 }
