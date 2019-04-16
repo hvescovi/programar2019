@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Listagem de Pessoas</title>
+    </head>
+    <body>
+        {% if session['usuario'] %}
+        <a href=/form_incluir_pessoa>Incluir</a> | 
+        {% endif %} 
+        <a href=/>Início</a> <br><br>
+
+        {% for pessoa in lista: %}
+            {{ pessoa.nome }} | {{ pessoa.endereco }} | {{ pessoa.telefone }} 
+            {% if session['usuario'] %}
+              <a href=/excluir_pessoa?nome={{ pessoa.nome }}>Excluir</a>
+              <a href=/form_alterar_pessoa?nome={{ pessoa.nome }}>Alterar</a><br>
+            {% endif %}
+        {% endfor %} 
+        
+    </body>
+</html>
