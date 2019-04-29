@@ -1,6 +1,7 @@
 package dao.dinamico;
 
 import java.util.ArrayList;
+import javax.swing.ListModel;
 import modelo.Livro;
 import modelo.Pessoa;
 
@@ -10,7 +11,7 @@ public class DAO {
     // acessem os mesmos dados
     static ArrayList<Pessoa> pessoas = new ArrayList();
     static ArrayList<Livro> livros = new ArrayList();
-    
+
     // inicialização do DAO: popular cadastros
     public DAO() {
         // popular o cadastro de livros
@@ -40,4 +41,33 @@ public class DAO {
     
     // manipulação de livros
     public ArrayList<Livro> retornarLivros() { return livros; }
+    
+    public Livro buscarLivroPorTitulo(String tit) {
+        for (Livro livro : livros) {
+            if (livro.getTitulo().equals(tit)) {
+                return livro;
+            }
+        }
+        return new Livro("nao encontrado", "nao encontrado", "nao encontrado", "nao encontrado");
+    }
+    
+    public ArrayList<Livro> retornarLivrosPorTitulosViaModel
+        (ListModel<String> modeloDaLista) {
+        // prepara o retorno
+        ArrayList<Livro> retorno = new ArrayList();
+        // percorre os títulos
+        for (int i = 0; i < modeloDaLista.getSize(); i++) {
+            // busca o livro pelo titulo
+            Livro tmp = buscarLivroPorTitulo(modeloDaLista.getElementAt(i));
+            // inclui na lista de retorno
+            retorno.add(tmp);
+        }
+        return retorno;
+    }
+
+    public void removerPessoaNaPosicao(int posicao) {
+        pessoas.remove(posicao-1);
+    }
+    
+    
 }

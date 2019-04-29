@@ -6,6 +6,8 @@
 package visao;
 
 import dao.dinamico.DAO;
+import java.awt.KeyboardFocusManager;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import modelo.Livro;
 import modelo.Pessoa;
@@ -30,6 +32,9 @@ public class CadastroPessoas extends javax.swing.JFrame {
         carregarLivrosNaLista();
         // mostra a primeira pessoa na tela
         mostrarPessoaNaTela(1);
+
+        txtEndereco.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERS‌​AL_KEYS, null);
+        txtEndereco.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERS‌​AL_KEYS, null);
     }
 
     public void carregarLivrosNaLista() {
@@ -40,7 +45,7 @@ public class CadastroPessoas extends javax.swing.JFrame {
 
     public void mostrarPessoaNaTela(int i) {
         // retornar a pessoa atual
-        Pessoa p = dao.retornarPessoa(i-1);
+        Pessoa p = dao.retornarPessoa(i - 1);
         // exibir valores dos campos na tela
         // a lista inicia do zero até n-1, por isso existe (i-1) a seguir
         this.txtNome.setText(p.getNome());
@@ -48,11 +53,11 @@ public class CadastroPessoas extends javax.swing.JFrame {
         this.txtEndereco.setText(p.getEndereco());
         // exibir número do registro atual
         this.txtRegistroAtual.setText(String.valueOf(i));
-        
+
         // criando uma lista temporária para popular 
         DefaultListModel itens = new DefaultListModel();
         // percorrer os livros da pessoa
-        for (Livro liv : p.getLivros()){
+        for (Livro liv : p.getLivros()) {
             itens.addElement(liv.getTitulo());
         }
         // configurar a lista para exibir os itens da lista temporária
@@ -76,23 +81,23 @@ public class CadastroPessoas extends javax.swing.JFrame {
         txtEndereco = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btPrimeiro = new javax.swing.JButton();
+        btAnterior = new javax.swing.JButton();
+        btProximo = new javax.swing.JButton();
+        btUltimo = new javax.swing.JButton();
         txtRegistroAtual = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstLivros = new javax.swing.JList<>();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
+        btAdicionar = new javax.swing.JButton();
         cmbLivros = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
+        btExcluirLivro = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btAdicionarLivro = new javax.swing.JButton();
+        btSalvar = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,35 +110,39 @@ public class CadastroPessoas extends javax.swing.JFrame {
 
         txtEndereco.setColumns(20);
         txtEndereco.setRows(5);
+        txtEndereco.setNextFocusableComponent(txtTelefone);
         jScrollPane1.setViewportView(txtEndereco);
 
         jLabel4.setText("Telefone:");
 
-        jButton1.setText("<<");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtTelefone.setNextFocusableComponent(btPrimeiro);
+
+        btPrimeiro.setText("<<");
+        btPrimeiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btPrimeiroActionPerformed(evt);
             }
         });
 
-        jButton2.setText("<");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btAnterior.setText("<");
+        btAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btAnteriorActionPerformed(evt);
             }
         });
 
-        jButton3.setText(">");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btProximo.setText(">");
+        btProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btProximoActionPerformed(evt);
             }
         });
 
-        jButton4.setText(">>");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btUltimo.setText(">>");
+        btUltimo.setNextFocusableComponent(btAdicionar);
+        btUltimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btUltimoActionPerformed(evt);
             }
         });
 
@@ -151,22 +160,44 @@ public class CadastroPessoas extends javax.swing.JFrame {
         jScrollPane2.setViewportView(lstLivros);
 
         jButton5.setText("Alterar");
+        jButton5.setEnabled(false);
 
-        jButton6.setText("-");
+        btExcluir.setText("-");
+        btExcluir.setNextFocusableComponent(lstLivros);
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText("+");
+        btAdicionar.setText("+");
+        btAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAdicionarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Meus Livros:");
 
-        jButton9.setText("X");
+        btExcluirLivro.setText("X");
+        btExcluirLivro.setNextFocusableComponent(btAdicionarLivro);
 
         jButton10.setText("...");
+        jButton10.setNextFocusableComponent(txtNome);
 
-        jButton11.setText("^");
+        btAdicionarLivro.setText("^");
+        btAdicionarLivro.setNextFocusableComponent(cmbLivros);
 
-        jButton8.setText("Salvar");
+        btSalvar.setText("Salvar");
+        btSalvar.setEnabled(false);
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
 
-        jButton12.setText("Cancelar");
+        btCancelar.setText("Cancelar");
+        btCancelar.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,7 +216,7 @@ public class CadastroPessoas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(408, 408, 408)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btAdicionarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(165, 165, 165))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +228,7 @@ public class CadastroPessoas extends javax.swing.JFrame {
                                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(203, 203, 203)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btUltimo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -209,30 +240,30 @@ public class CadastroPessoas extends javax.swing.JFrame {
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btExcluirLivro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(6, 6, 6))))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btPrimeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtRegistroAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton12)
+                .addComponent(btCancelar)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -254,36 +285,36 @@ public class CadastroPessoas extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton9)
+                        .addComponent(btExcluirLivro)
                         .addGap(45, 45, 45)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton11)
+                    .addComponent(btAdicionarLivro)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
                         .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtRegistroAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btPrimeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btUltimo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
+                    .addComponent(btAdicionar)
                     .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton8)
-                    .addComponent(jButton12))
+                    .addComponent(btExcluir)
+                    .addComponent(btSalvar)
+                    .addComponent(btCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProximoActionPerformed
         // obtém o número de registro atual
         int atual = Integer.parseInt(txtRegistroAtual.getText());
         // se for possível avançar
@@ -291,9 +322,9 @@ public class CadastroPessoas extends javax.swing.JFrame {
             // avança para o próximo registro
             mostrarPessoaNaTela(atual + 1);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btProximoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnteriorActionPerformed
         // obtém o número de registro atual
         int atual = Integer.parseInt(txtRegistroAtual.getText());
         // se for possível retroceder
@@ -301,18 +332,18 @@ public class CadastroPessoas extends javax.swing.JFrame {
             // retrocede
             mostrarPessoaNaTela(atual - 1);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btAnteriorActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrimeiroActionPerformed
         // vai para o primeiro registro
         mostrarPessoaNaTela(1);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btPrimeiroActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUltimoActionPerformed
         // vai para o último registro
         mostrarPessoaNaTela(dao.retornarQuantidadeDePessoas());
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btUltimoActionPerformed
 
     private void txtRegistroAtualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegistroAtualActionPerformed
         // TODO add your handling code here:
@@ -321,6 +352,89 @@ public class CadastroPessoas extends javax.swing.JFrame {
     private void txtRegistroAtualPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtRegistroAtualPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRegistroAtualPropertyChange
+
+    private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
+        // preparar botões para adicionar pessoa
+        prepararBotoesParaAdicionar();
+        // limpar campos da tela
+        limparCamposDaTela();
+        // posicionar cursos no campo nome
+        txtNome.requestFocus();
+
+    }//GEN-LAST:event_btAdicionarActionPerformed
+    
+    public void limparCamposDaTela() {
+        // limpar campos da tela
+        txtNome.setText("");
+        txtEndereco.setText("");
+        txtTelefone.setText("");
+        // limpar a lista de livros
+        DefaultListModel vazio = new DefaultListModel();
+        lstLivros.setModel(vazio);
+    }
+    
+    public void prepararBotoesParaAdicionar() {
+        btPrimeiro.setEnabled(false);
+        btAnterior.setEnabled(false);
+        btProximo.setEnabled(false);
+        btUltimo.setEnabled(false);
+        btExcluir.setEnabled(false);
+        btAdicionar.setEnabled(false);
+        // desabilitar valor do registro atual
+        txtRegistroAtual.setEnabled(false);
+        // habilitar botões de salvar e cancelar
+        btSalvar.setEnabled(true);
+        btCancelar.setEnabled(true);
+    }
+
+    public void prepararBotoesParaNavegar() {
+        btPrimeiro.setEnabled(true);
+        btAnterior.setEnabled(true);
+        btProximo.setEnabled(true);
+        btUltimo.setEnabled(true);
+        btExcluir.setEnabled(true);
+        btAdicionar.setEnabled(true);
+        // desabilitar valor do registro atual
+        txtRegistroAtual.setEnabled(true);
+        // habilitar botões de salvar e cancelar
+        btSalvar.setEnabled(false);
+        btCancelar.setEnabled(false);
+    }
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        // obter livros selecionados
+        ArrayList<Livro> livros = dao.retornarLivrosPorTitulosViaModel(lstLivros.getModel());
+        // cria a nova pessoa
+        Pessoa nova = new Pessoa(txtNome.getText(), txtEndereco.getText(), txtTelefone.getText(), livros);
+        // adicionar a nova pessoa
+        dao.adicionarPessoa(nova);
+        // desbloquear tela
+        prepararBotoesParaNavegar();
+        // mostrar registro o novo registro
+        mostrarPessoaNaTela(dao.retornarQuantidadeDePessoas());
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        // obtém o número de registro atual
+        int atual = Integer.parseInt(txtRegistroAtual.getText());
+        // remover pessoa atual, se for possível
+        if (dao.retornarQuantidadeDePessoas() > 0) {
+            // remover
+            dao.removerPessoaNaPosicao(atual);
+            // se ainda houver pessoas pra mostrar
+            if (dao.retornarQuantidadeDePessoas() > 0) {
+                //atualizar tela
+                mostrarPessoaNaTela(atual);
+            } else {
+                // desabilita botão excluir
+                btExcluir.setEnabled(false);
+                // deixa botões no modo incluir
+                prepararBotoesParaAdicionar();
+                // limpa campos
+                limparCamposDaTela();
+            }
+        } 
+    }//GEN-LAST:event_btExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,19 +472,19 @@ public class CadastroPessoas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAdicionar;
+    private javax.swing.JButton btAdicionarLivro;
+    private javax.swing.JButton btAnterior;
+    private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btExcluirLivro;
+    private javax.swing.JButton btPrimeiro;
+    private javax.swing.JButton btProximo;
+    private javax.swing.JButton btSalvar;
+    private javax.swing.JButton btUltimo;
     private javax.swing.JComboBox<String> cmbLivros;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
