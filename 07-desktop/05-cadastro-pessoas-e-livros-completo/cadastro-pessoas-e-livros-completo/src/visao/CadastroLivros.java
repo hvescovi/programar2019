@@ -8,7 +8,6 @@ package visao;
 import dao.dinamico.DAO;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import modelo.Livro;
 
@@ -204,7 +203,7 @@ public class CadastroLivros extends javax.swing.JDialog {
             // mostrar todos os livros
             busca = dao.retornarLivros();
         } else {
-            // buscar o livro digitado 
+            // buscar livros que contenham a expressão digitada
             busca = dao.retornarLivrosPorTextoDeBusca(txtBuscarLivro.getText());
         }
         // preencher lista com dados encontrados

@@ -165,6 +165,11 @@ public class CadastroPessoas extends javax.swing.JFrame {
 
         jButton5.setText("Alterar");
         jButton5.setEnabled(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         btExcluir.setText("-");
         btExcluir.setNextFocusableComponent(lstLivros);
@@ -497,8 +502,10 @@ public class CadastroPessoas extends javax.swing.JFrame {
         // buscar a pessoa atual
         int atual = Integer.parseInt(txtRegistroAtual.getText());
         Pessoa p = dao.retornarPessoaAcessoAbsoluto(atual-1);
-        // buscar o livro selecionado
-        Livro l = dao.buscarLivroPorTitulo(cmbLivros.getSelectedItem().toString());
+        // buscar o nome do livro selecionado na lista
+        int posi = lstLivros.getSelectedIndex();
+        // carregar o livro selecionado (busca por titulo)
+        Livro l = dao.buscarLivroPorTitulo(lstLivros.getModel().getElementAt(posi));
         // remover o livro da pessoa e atualiza a fonte de dados
         p.getLivros().remove(l);
         dao.atualizarPessoa(p);
@@ -531,6 +538,10 @@ public class CadastroPessoas extends javax.swing.JFrame {
         // mostrar registro o novo registro
         mostrarPessoaNaTela(atual);
     }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
