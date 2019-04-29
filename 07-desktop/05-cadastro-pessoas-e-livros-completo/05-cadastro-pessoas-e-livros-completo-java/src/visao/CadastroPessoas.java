@@ -9,6 +9,7 @@ import dao.dinamico.DAO;
 import java.awt.KeyboardFocusManager;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import modelo.Livro;
 import modelo.Pessoa;
 
@@ -38,6 +39,9 @@ public class CadastroPessoas extends javax.swing.JFrame {
     }
 
     public void carregarLivrosNaLista() {
+        // limpa itens
+        cmbLivros.removeAllItems();
+        // preenche os livros
         for (Livro livro : dao.retornarLivros()) {
             cmbLivros.addItem(livro.getTitulo());
         }
@@ -45,7 +49,7 @@ public class CadastroPessoas extends javax.swing.JFrame {
 
     public void mostrarPessoaNaTela(int i) {
         // retornar a pessoa atual
-        Pessoa p = dao.retornarPessoa(i - 1);
+        Pessoa p = dao.retornarPessoaAcessoAbsoluto(i - 1);
         // exibir valores dos campos na tela
         // a lista inicia do zero até n-1, por isso existe (i-1) a seguir
         this.txtNome.setText(p.getNome());
@@ -94,7 +98,7 @@ public class CadastroPessoas extends javax.swing.JFrame {
         cmbLivros = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         btExcluirLivro = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        btAbrirCadastroLivros = new javax.swing.JButton();
         btAdicionarLivro = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
@@ -177,16 +181,37 @@ public class CadastroPessoas extends javax.swing.JFrame {
             }
         });
 
+        cmbLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbLivrosActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Meus Livros:");
 
         btExcluirLivro.setText("X");
         btExcluirLivro.setNextFocusableComponent(btAdicionarLivro);
+        btExcluirLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirLivroActionPerformed(evt);
+            }
+        });
 
-        jButton10.setText("...");
-        jButton10.setNextFocusableComponent(txtNome);
+        btAbrirCadastroLivros.setText("...");
+        btAbrirCadastroLivros.setNextFocusableComponent(txtNome);
+        btAbrirCadastroLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAbrirCadastroLivrosActionPerformed(evt);
+            }
+        });
 
         btAdicionarLivro.setText("^");
         btAdicionarLivro.setNextFocusableComponent(cmbLivros);
+        btAdicionarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAdicionarLivroActionPerformed(evt);
+            }
+        });
 
         btSalvar.setText("Salvar");
         btSalvar.setEnabled(false);
@@ -198,6 +223,11 @@ public class CadastroPessoas extends javax.swing.JFrame {
 
         btCancelar.setText("Cancelar");
         btCancelar.setEnabled(false);
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -241,7 +271,7 @@ public class CadastroPessoas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btExcluirLivro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(btAbrirCadastroLivros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(6, 6, 6))))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -300,7 +330,7 @@ public class CadastroPessoas extends javax.swing.JFrame {
                     .addComponent(btProximo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btUltimo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10))
+                    .addComponent(btAbrirCadastroLivros))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAdicionar)
@@ -362,7 +392,7 @@ public class CadastroPessoas extends javax.swing.JFrame {
         txtNome.requestFocus();
 
     }//GEN-LAST:event_btAdicionarActionPerformed
-    
+
     public void limparCamposDaTela() {
         // limpar campos da tela
         txtNome.setText("");
@@ -372,7 +402,7 @@ public class CadastroPessoas extends javax.swing.JFrame {
         DefaultListModel vazio = new DefaultListModel();
         lstLivros.setModel(vazio);
     }
-    
+
     public void prepararBotoesParaAdicionar() {
         btPrimeiro.setEnabled(false);
         btAnterior.setEnabled(false);
@@ -433,8 +463,74 @@ public class CadastroPessoas extends javax.swing.JFrame {
                 // limpa campos
                 limparCamposDaTela();
             }
-        } 
+        }
     }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btAdicionarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarLivroActionPerformed
+        // buscar a pessoa atual
+        int atual = Integer.parseInt(txtRegistroAtual.getText());
+        Pessoa p = dao.retornarPessoaAcessoAbsoluto(atual-1);
+        // buscar o livro selecionado
+        Livro l = dao.buscarLivroPorTitulo(cmbLivros.getSelectedItem().toString());
+        // verificar se a pessoa já possui o livro
+        boolean possui = false;
+        for (Livro livro : p.getLivros()) {
+            if (livro.getTitulo().equals(l.getTitulo())) {
+                possui = true;
+                break;
+            }
+        }
+        // se a pessoa não possui o livro
+        if (!possui) {
+            // adiciona o livro à pessoa e atualiza os dados
+            p.getLivros().add(l);
+            dao.atualizarPessoa(p);
+            //atualiza a tela
+            mostrarPessoaNaTela(atual);
+        } else {
+            JOptionPane.showMessageDialog(null, "A pessoa já possui o livro selecionado!");
+        }
+
+    }//GEN-LAST:event_btAdicionarLivroActionPerformed
+
+    private void btExcluirLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirLivroActionPerformed
+        // buscar a pessoa atual
+        int atual = Integer.parseInt(txtRegistroAtual.getText());
+        Pessoa p = dao.retornarPessoaAcessoAbsoluto(atual-1);
+        // buscar o livro selecionado
+        Livro l = dao.buscarLivroPorTitulo(cmbLivros.getSelectedItem().toString());
+        // remover o livro da pessoa e atualiza a fonte de dados
+        p.getLivros().remove(l);
+        dao.atualizarPessoa(p);
+        // atualizar a tela
+        mostrarPessoaNaTela(atual);        
+    }//GEN-LAST:event_btExcluirLivroActionPerformed
+
+    private void btAbrirCadastroLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirCadastroLivrosActionPerformed
+        // criar nova instância do cadastro de livros
+        CadastroLivros cadli = new CadastroLivros(this, true);
+        // associar o DAO do cadastro de livros ao DAO desta janela
+        cadli.dao = this.dao;
+        // associar combobox para poder atualizar quando fechar a janela modal
+        cadli.papai = this;
+        // centralizar a janela
+        cadli.setLocationRelativeTo(null);
+        // tornar a janela visível
+        cadli.setVisible(true);        
+    }//GEN-LAST:event_btAbrirCadastroLivrosActionPerformed
+
+    private void cmbLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLivrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbLivrosActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // desbloquear tela
+        prepararBotoesParaNavegar();
+        // pega posição da pessoa atual
+        int atual = Integer.parseInt(txtRegistroAtual.getText());
+        // mostrar registro o novo registro
+        mostrarPessoaNaTela(atual);
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -453,13 +549,17 @@ public class CadastroPessoas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroPessoas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroPessoas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroPessoas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroPessoas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroPessoas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroPessoas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroPessoas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroPessoas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -472,6 +572,7 @@ public class CadastroPessoas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAbrirCadastroLivros;
     private javax.swing.JButton btAdicionar;
     private javax.swing.JButton btAdicionarLivro;
     private javax.swing.JButton btAnterior;
@@ -483,7 +584,6 @@ public class CadastroPessoas extends javax.swing.JFrame {
     private javax.swing.JButton btSalvar;
     private javax.swing.JButton btUltimo;
     private javax.swing.JComboBox<String> cmbLivros;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
