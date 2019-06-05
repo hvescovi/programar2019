@@ -1,14 +1,14 @@
 import os
-# o estilo de importação a seguir dispensa o uso da palavra peewee em diversos comandos
+# o estilo de importação a seguir dispensa o uso da palavra peewee em comandos
 from peewee import *
 
 # conectar as classes ao banco de dados -----------------------------
 
-# definição do arquivo de dados do SQLite
+# definir o nome do arquivo de dados do SQLite
 arq = 'manytomany-estilo1.db'
-# ligação do arquivo do SQLite com uma variável
+# ligar o arquivo do SQLite com uma variável
 db = SqliteDatabase(arq)
-# classe-pai que utiliza ligação com BD    
+# definir classe-pai que utiliza ligação com BD (class Meta)
 class BaseModel(Model):
     class Meta:
         database = db
