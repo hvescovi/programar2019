@@ -53,7 +53,7 @@ disciplina2Joao = AlunoDisciplina.create(aluno=joao, disciplina=espanhol)
 
 maria = Aluno.create(nome = 'Maria')
 
-# definir disciplinas que Maria cursa
+# definir que Maria cursa inglês
 disciplinaMaria = AlunoDisciplina.create(aluno=maria, disciplina=ingles)
 
 # testar as classes: exibição de informações ------------------------
@@ -63,5 +63,4 @@ disciplinaMaria = AlunoDisciplina.create(aluno=maria, disciplina=ingles)
 q1 = AlunoDisciplina.select()
 print("Quais alunos cursam quais disciplinas:")
 for dado in q1:
-    print(dado.aluno.nome+" cursa: "+
-    dado.disciplina.nome)
+    print(dado.aluno.nome+" cursa: " + dado.disciplina.nome)
