@@ -15,6 +15,8 @@ class BaseModel(Model):
 
 # definir classes de modelo -----------------------------------------
 
+# toda classe deve herdar BaseModel, em vez de Model
+# dessa forma, o atributo database da subclasse Meta já estará definido
 class Aluno(BaseModel):
     nome = CharField()
     
