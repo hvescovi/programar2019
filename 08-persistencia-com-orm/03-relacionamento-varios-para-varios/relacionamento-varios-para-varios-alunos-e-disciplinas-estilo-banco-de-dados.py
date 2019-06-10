@@ -5,7 +5,7 @@ from peewee import *
 # conectar as classes ao banco de dados -----------------------------
 
 # definir o nome do arquivo de dados do SQLite
-arq = 'manytomany-estilo1.db'
+arq = 'manytomany-estilo-bd.db'
 # ligar o arquivo do SQLite com uma variável
 db = SqliteDatabase(arq)
 # definir classe-pai que utiliza ligação com BD (class Meta)
