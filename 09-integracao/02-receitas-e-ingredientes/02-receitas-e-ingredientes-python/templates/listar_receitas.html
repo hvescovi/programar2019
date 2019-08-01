@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Listagem de Receitas</title>
+    </head>
+    <body>
+        <a href=/>Início | <a href=#>Incluir (em breve)</a>
+        <hr>
+        <h1>Receitas</h1>
+
+        {% for receita in receitas %}
+            {{ receita.nome }} 
+            <a href=listar_ingredientes_da_receita?receita_id={{receita.id}}>ingredientes...</a>
+        {% endfor %} 
+        
+    </body>
+</html>

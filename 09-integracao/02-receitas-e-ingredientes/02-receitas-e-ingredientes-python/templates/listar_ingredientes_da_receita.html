@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Receita e seus ingredientes</title>
+    </head>
+    <body>
+        <a href=/listar_receitas>Voltar</a>
+        
+        <h1>Receita: {{receita.nome}}</h1>
+        Ingredientes: <br>
+
+        <!-- percorre os ingredientes da receita -->
+        {% for ingDaRec in ings %}
+           <!-- exibe o nome do ingrediente -->
+           * {{ ingDaRec.ingrediente.nome }} 
+           <!-- exibe a unidade-->
+           ({{ingDaRec.ingrediente.unidade}}): 
+           <!-- exibe a quantidade do ingrediente na receita -->
+           {{ingDaRec.quantidade}}<br>            
+        {% endfor %} 
+        
+    </body>
+</html>
