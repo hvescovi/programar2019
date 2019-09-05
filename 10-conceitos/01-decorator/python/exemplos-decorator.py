@@ -59,7 +59,7 @@ def executar_funcao(qual_funcao):
     numero = 20
 
     # chama a função passada como parâmetro com o valor definido
-    return qual_funcao(20)
+    return qual_funcao(numero)
 
 # exibe o resultado da invocação de uma função especificada por parâmetro
 # utilizou-se uma função definida anteriormente (somar_um, da linha 8, e não da linha 28)
@@ -94,7 +94,7 @@ print("executando função retornada ===>", func())
 
 
 #
-# quinto conceito: funções "locais" acessando o exterior da função "externa"
+# quinto conceito: funções "locais" acessando o contexto da função "externa"
 # padrão conhecido como Closure
 #
 

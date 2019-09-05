@@ -24,7 +24,7 @@ class Disciplina(BaseModel):
     nome = CharField()
 
 class AlunoDisciplina(BaseModel):
-    aluno = ForeignKeyField(Aluno)
+    aluno = ForeignKeyField(Aluno, column_name="cod_aluno")
     disciplina = ForeignKeyField(Disciplina)
 
 # teste das classes: inicializar BD ---------------------------------
