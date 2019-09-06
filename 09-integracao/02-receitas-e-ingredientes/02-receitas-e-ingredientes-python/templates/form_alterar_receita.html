@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulário de edição de receita</title>
+    </head>
+    <body>
+        <a href=/listar_receitas>Voltar</a>
+        <h1>Edição de receita</h1>
+        <form action=/alterar_receita method=post>
+            <input type=hidden name=receita_id value={{receita.id}}>
+            Nome: <input type=text name=nome value="{{receita.nome}}"> 
+            <br>
+            <input type=submit value="Alterar dados da receita">
+        </form>        
+        
+        <!-- percorre os ingredientes da receita -->
+        {% for ingDaRec in ings %}
+           <!-- exibe o nome do ingrediente -->
+           * {{ ingDaRec.ingrediente.nome }} 
+           <!-- exibe a unidade-->
+           ({{ingDaRec.ingrediente.unidade}}): 
+           <!-- exibe a quantidade do ingrediente na receita -->
+           {{ingDaRec.quantidade}}
+           
+           <a href=excluir_ingrediente_da_receita?receita_id={{receita.id}}&ingrediente_id={{ingDaRec.ingrediente.id}}> excluir )(em breve)</a><br>            
+        {% endfor %} 
+
+        <form action=/incluir_ingrediente_na_receita method=post>
+            Ingrediente: 
+            <select name=ingrediente_id>
+                {% for ing in todos_ings %}
+                <option value={{ing.id}}>{{ing.nome}}</option>
+                {% endfor %}
+            </select>
+            Quantidade: <input type=text name=quantidade>
+            <input type=hidden name=receita_id value={{receita.id}}>
+            <br>
+            <input type=submit value="Adicionar ingrediente">
+        </form>
+    </body>
+</html>

@@ -10,7 +10,7 @@
 
         {% for receita in receitas %}
             {{ receita.nome }} 
-            <a href=listar_ingredientes_da_receita?receita_id={{receita.id}}>ingredientes...</a>
+            <a href=listar_ingredientes_da_receita?receita_id={{receita.id}}>ingredientes...</a> | <a href=form_alterar_receita?receita_id={{receita.id}}> editar </a>
         {% endfor %} 
         
     </body>
