@@ -10,23 +10,6 @@ def inicio():
 
 @app.route("/listar_pessoas")
 def listar_pessoas():
-    # obter as pessoas do peewee
-    pessoas_peewee = Pessoa.select()
-    # inicializar a string que vai conter o json
-    json = ""
-    # percorrer as pessoas
-    for p in pessoas_peewee:
-        # adicionar a pessoa em versão json
-        # https://stackoverflow.com/questions/53850558/return-single-peewee-record-as-dict
-        # http://docs.peewee-orm.com/en/latest/peewee/playhouse.html#model_to_dict
-        json += str(model_to_dict(p))+" ,"
-    # remove a última vírgula sobrando
-    j2 = json[:-1]
-    # retorna o json
-    return jsonify({'lista':j2})
-
-@app.route("/listar_pessoas2")
-def listar_pessoas2():
     # forma alternativa rápida: usando map (lambda)
     pessoas = list(map(model_to_dict, Pessoa.select()))
     return jsonify({'lista':pessoas})
