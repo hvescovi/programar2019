@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template
 from modelo import Pessoa
-from peewee import *
 
 app = Flask(__name__)
 

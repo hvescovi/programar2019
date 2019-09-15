@@ -1,9 +1,9 @@
 from peewee import *
 
 # http://docs.peewee-orm.com/en/latest/peewee/database.html#using-sqlite
-# a leitura de dados será apenas em memória, temporário, para renderizar os dados
-arq = ':memory'
-
+# a leitura de dados será apenas em memória, 
+# temporário, para renderizar os dados
+arq = ':memory:'
 db = SqliteDatabase(arq)
 
 class BaseModel(Model):

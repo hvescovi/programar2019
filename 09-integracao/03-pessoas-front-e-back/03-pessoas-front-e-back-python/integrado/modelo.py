@@ -1,7 +1,6 @@
 from peewee import *
 
 arq = 'pessoas.db'
-
 db = SqliteDatabase(arq)
 
 class BaseModel(Model):

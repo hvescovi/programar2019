@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template
 from modelo import Pessoa
 import requests
-from playhouse.shortcuts import model_to_dict, dict_to_model
+from playhouse.shortcuts import dict_to_model
 
 # https://www.twilio.com/blog/2016/12/http-requests-in-python-3.html
 # pip3 install requests

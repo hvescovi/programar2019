@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from modelo import Pessoa
-from playhouse.shortcuts import model_to_dict, dict_to_model
+from playhouse.shortcuts import model_to_dict
 
 app = Flask(__name__)
 
@@ -12,10 +12,10 @@ def inicio():
 def listar_pessoas():
     # forma alternativa rápida: usando map (lambda)
     pessoas = list(map(model_to_dict, Pessoa.select()))
-    return jsonify({'lista':pessoas})
-    # referência: 
-    # https://www.geeksforgeeks.org/python-map-function/
-    
+    return jsonify({'lista':pessoas}) # referência: https://www.geeksforgeeks.org/python-map-function/
+
+app.run(debug=True,port=4999)
+
 ''' exemplo do map:
 
 def dobrar(n):
@@ -51,5 +51,3 @@ exemplo de retorno:
   ]
 }
 '''
-
-app.run(debug=True,port=4999)
