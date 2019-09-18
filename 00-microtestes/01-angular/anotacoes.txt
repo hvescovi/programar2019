@@ -1,0 +1,26 @@
+
+<html ng-app> => declaração de uso do angularjs
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script> => importação do angular
+
+<script src="exemplo1.js"></script> => código externo (nosso) construído para uso
+
+
+	<div ng-controller="hello"> => invocação da função que está no arquivo .js importado acima
+
+		Hello {{name}} => exibição da variável que está no .js externo
+
+<input ng-model="typeName" placeHolder="type your name please" />  => declaração de uma variável chamada "typeName"
+<br />
+			 Hi {{typeName}}, <br /> => exibindo o valor da variável
+			<br/>
+		<br/>
+		<label>Quantity of product</label>
+		 <input type="number" ng-model="qt"	required="required" />  => declarando variável chamada "qt"
+			<label>Inform Price</label>
+			 <input	type="number" ng-model="price" required="required" />  => declarando variável chamada "price"
+			Total {{qt *price | currency}} => exibindo qt * price
+	</div>
+</body>
+</html>
+
+<!-- https://imasters.com.br/back-end/serie-angularjs-apresentacao-e-hello-world -->
