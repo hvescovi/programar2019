@@ -1,64 +1,108 @@
 <!DOCTYPE html>
 <html>
+
 <head></head>
+
 <body>
-	<h1>Autenticação</h1>
+	<h1>Cadastro</h1>
+
 	Login: <input type=text id=login name=login> <br>
+
+	<!-- quando o cursor sair do campo senha, consulta-se a validade do login/senha -->
 	Senha: <input type=text id=senha name=senha onfocusout="analisarSenha()"> <br>
+
+	<!-- área de imagens de controle de verificação de login/senha -->
 	<div id="espera"><img src=waiting2.gif width="24"></div>
 	<div id="ok"><img src=ok.gif width="24"></div>
 	<div id="error"><img src=error.png width="24"></div>
-	Telefone: <input type=text name=telefone>
+
+	<!-- outros dados -->
+	Nome: <input type=text name=nome> <br>
+	Telefone: <input type=text name=telefone> <br>
 	Endereço: <textarea name=endereco></textarea>
+	<input type=submit value=Cadastrar>
 
-	<script>
+	<hr>
+	(deve-se informar login=admin e senha=123 para obter sucesso)
 
-			mudarVisibilidade("espera", "none");
-			mudarVisibilidade("ok", "none");
-			mudarVisibilidade("error", "none");
-	
-			function httpGet(endereco) {
-				var req = new XMLHttpRequest();
-				req.onreadystatechange = function () {
-					if (this.readyState == 4 && this.status == 200) {
-						if (typeof this.responseText !== 'undefined') {
-							var myArr = JSON.parse(this.responseText);
-							informaResultado(myArr);
-							mudarVisibilidade("espera", "none");
-						}
-					}
-				};
-				req.onload = informaResultado();
-				req.open("GET", endereco, true); // true for synchronous request
-				req.send();
-			}
-			function informaResultado(conteudo) {
-				try {
-					if (conteudo['message'] === 'ok') {
-						mudarVisibilidade("ok", "block");
-					} else {
-						mudarVisibilidade("error", "block");
+	<script> // início de código javascript
+
+		// oculta imagens
+		mudarVisibilidade("espera", "none");
+		mudarVisibilidade("ok", "none");
+		mudarVisibilidade("error", "none");
+
+		// função que faz chamada http get
+		function httpGet(endereco) {
+			var req = new XMLHttpRequest(); // objeto que faz chamada http
+			// definir função executada quando a propriedade readyState mudar
+			req.onreadystatechange = function () {
+				// se a requisição foi concluída, a resposta está pronta e a requisição deu certo
+				if (this.readyState == 4 && this.status == 200) {
+					// se a resposta não for indefinida
+					if (typeof this.responseText !== 'undefined') {
+						// converte a resposta para json
+						var myArr = JSON.parse(this.responseText);
+						// altera as figuras de acordo com a resposta
+						informaResultado(myArr);
 					}
 				}
-				catch (e) {}
-			}
-			function mudarVisibilidade(elemento, visibilidade){
-				var espera = document.getElementById(elemento);
-				espera.style.display = visibilidade;
-			}
-			function analisarSenha() {
-				var login = document.getElementById("login").value;
-				var senha = document.getElementById("senha").value;
-				var preenchidos = (login && senha);
-				if (preenchidos) {
-					var site = "http://www.hylson.com/temp15/myservice3.php?login=" + login + "&senha=" + senha+"&sleep=1";
-					mudarVisibilidade("espera", "block");
-					mudarVisibilidade("ok", "none");
-					mudarVisibilidade("error", "none");
-					var res = httpGet(site);
+			};
+			//req.onload = informaResultado();
+			// define os parâmetros da chamada http get! (true define chamada assíncrona)
+			req.open("GET", endereco, true); // true for synchronous request
+			// envia a requisição
+			req.send();
+		}
+
+		// função para manipular imagens
+		function informaResultado(conteudo) {
+			try {
+				// se o resultado da requisição deu certo
+				if (conteudo['message'] === 'ok') {
+					// mostra a figura de ok
+					mudarVisibilidade("ok", "block");
+				} else {
+					// mostra a figura de erro
+					mudarVisibilidade("error", "block");
 				}
+				// oculta ícone de progresso
+				mudarVisibilidade("espera", "none");
 			}
-		</script>
+			catch (e) { } // não trata erros de conteúdo inválido
+		}
+
+		// função que altera visibilidade de um elemento
+		function mudarVisibilidade(elemento, visibilidade) {
+			// encontra o elemento
+			var espera = document.getElementById(elemento);
+			// altera a visibilidade
+			espera.style.display = visibilidade;
+		}
+
+		// função que verifica se uma senha está correta
+		function analisarSenha() {
+			// obtém valores de login e senha
+			var login = document.getElementById("login").value;
+			var senha = document.getElementById("senha").value;
+
+			// se ambos os dados estão preenchidos
+			if (login && senha) {
+
+				// define a url de consulta
+				var site = "http://www.hylson.com/temp15/myservice3.php?login=" +
+					login + "&senha=" + senha + "&sleep=1";
+
+				// ativa barra de progresso e imagens de resultado
+				mudarVisibilidade("espera", "block");
+				mudarVisibilidade("ok", "none");
+				mudarVisibilidade("error", "none");
+
+				// faz a chamada http get
+				var res = httpGet(site);
+			}
+		}
+	</script>
 
 </body>
 
