@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+	<h1>Autenticação</h1>
+	Login: <input type=text id=login name=login> <br>
+	Senha: <input type=text id=senha name=senha onfocusout="analisarSenha()"> <br>
+	<div id="espera"><img src=waiting2.gif width="24"></div>
+	<div id="ok"><img src=ok.gif width="24"></div>
+	<div id="error"><img src=error.png width="24"></div>
+	Telefone: <input type=text name=telefone>
+	Endereço: <textarea name=endereco></textarea>
+
+	<script>
+
+			mudarVisibilidade("espera", "none");
+			mudarVisibilidade("ok", "none");
+			mudarVisibilidade("error", "none");
+	
+			function httpGet(endereco) {
+				var req = new XMLHttpRequest();
+				req.onreadystatechange = function () {
+					if (this.readyState == 4 && this.status == 200) {
+						if (typeof this.responseText !== 'undefined') {
+							var myArr = JSON.parse(this.responseText);
+							informaResultado(myArr);
+							mudarVisibilidade("espera", "none");
+						}
+					}
+				};
+				req.onload = informaResultado();
+				req.open("GET", endereco, true); // true for synchronous request
+				req.send();
+			}
+			function informaResultado(conteudo) {
+				try {
+					if (conteudo['message'] === 'ok') {
+						mudarVisibilidade("ok", "block");
+					} else {
+						mudarVisibilidade("error", "block");
+					}
+				}
+				catch (e) {}
+			}
+			function mudarVisibilidade(elemento, visibilidade){
+				var espera = document.getElementById(elemento);
+				espera.style.display = visibilidade;
+			}
+			function analisarSenha() {
+				var login = document.getElementById("login").value;
+				var senha = document.getElementById("senha").value;
+				var preenchidos = (login && senha);
+				if (preenchidos) {
+					var site = "http://www.hylson.com/temp15/myservice3.php?login=" + login + "&senha=" + senha+"&sleep=1";
+					mudarVisibilidade("espera", "block");
+					mudarVisibilidade("ok", "none");
+					mudarVisibilidade("error", "none");
+					var res = httpGet(site);
+				}
+			}
+		</script>
+
+</body>
+
+</html>
