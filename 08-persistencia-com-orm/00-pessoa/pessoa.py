@@ -38,5 +38,5 @@ if __name__ == '__main__': # teste das classes e da persistência
         exit() # finaliza o programa
 
     # criar uma pessoa e mostrar suas informações
-    jo = Pessoa(nome = "Joao", endereco = "Casa 9", telefone = "99332-1212")
+    jo = Pessoa.create(nome = "Joao", endereco = "Casa 9", telefone = "99332-1212")
     print(jo)

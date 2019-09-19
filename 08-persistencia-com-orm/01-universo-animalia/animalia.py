@@ -1,14 +1,15 @@
-import peewee, os
+from peewee import *
+import os
 
 # conexão com o banco de dados do SQLLite
-db = peewee.SqliteDatabase('animalia.db')
+db = SqliteDatabase('animalia.db')
 
 # declaração da classe herdando características da classe Model
-class Animal(peewee.Model):
+class Animal(Model):
     # atributos do tipo texto
-    nomedono = peewee.CharField()
-    tipo_animal = peewee.CharField()
-    raca = peewee.CharField()
+    nomedono = CharField()
+    tipo_animal = CharField()
+    raca = CharField()
     # subclasse que estabelece vínculo da classe com o banco de dados
     class Meta:
         # o atributo database se refere à variável de conexão com o BD
@@ -17,14 +18,14 @@ class Animal(peewee.Model):
     def __str__(self):
         return self.tipo_animal+","+self.raca+" de "+self.nomedono
 
-class Consulta(peewee.Model):
-    data = peewee.CharField()
-    servico = peewee.CharField()
-    horario = peewee.CharField()
+class Consulta(Model):
+    data = CharField()
+    servico = CharField()
+    horario = CharField()
     # o atributo animal possui um valor que é uma instância de outra classe 
-    animal = peewee.ForeignKeyField(Animal)
-    confirma = peewee.CharField()
-    myID = peewee.CharField()
+    animal = ForeignKeyField(Animal)
+    confirma = CharField()
+    myID = CharField()
     class Meta:
         database = db
     def __str__(self):
@@ -45,32 +46,26 @@ if __name__ == '__main__':
         # solicitar a criação das tabelas
         db.create_tables([Animal,Consulta]) 
     # é preciso tratar erros    
-    except peewee.OperationalError as e:
+    except OperationalError as e:
         print("erro ao criar tabelas: "+str(e))
 
     print("TESTE DO ANIMAL")
     # criar um animal
-    a1 = Animal(nomedono="José", tipo_animal="C", raca="Chiuaua")
+    a1 = Animal.create(nomedono="José", tipo_animal="C", raca="Chiuaua")
     print(a1)
 
     print("TESTE DA CONSULTA")
     # criar uma consulta
-    c1 = Consulta(data="19/09/2018", servico="Consulta de rotina", 
+    c1 = Consulta.create(data="19/09/2018", servico="Consulta de rotina", 
     horario="14:00", animal=a1, confirma="N", myID="c9d8f7gu4h3hnwsik3e")
     print(c1)
 
-    print("TESTE DA PERSISTÊNCIA")
-    # salvar o chiuaua
-    a1.save()
-    # salvar a consulta
-    c1.save()
     # criar uma nova consulta
-    c2 = Consulta(data="21/09/2018", servico="Aplicação de vacina", 
+    c2 = Consulta.create(data="21/09/2018", servico="Aplicação de vacina", 
     horario="10:00", animal=a1, confirma="S", myID="d9firtu3434uit")
-    # salva a consulta
-    c2.save()
+
     # obter todas as consultas
     todos = Consulta.select()
     # percorrer e mostrar as consultas
     for con in todos:
-        print(con)    
+        print(con)
