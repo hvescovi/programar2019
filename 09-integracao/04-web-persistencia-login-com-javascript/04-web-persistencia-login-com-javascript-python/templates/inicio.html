@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Página inicial</title>
+    </head>
+    <body>
+        {% if session['usuario'] %}
+          Bem vindo, {{ session['usuario'] }}
+          | <a href=/logout>Sair</a>
+        {% else %}
+        <a href=/form_login>Fazer login</a>
+        {% endif %}
+        <h1>Sistema de cadastro de pessoas</h1>
+        <a href=/listar_pessoas>Listar</a>
+    </body>
+</html>

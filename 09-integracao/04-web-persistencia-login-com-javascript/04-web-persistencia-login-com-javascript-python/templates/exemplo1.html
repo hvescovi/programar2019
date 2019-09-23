@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+	<h1>Cadastro</h1>
+
+
+	Login: <input type=text id=login name=login> <br>
+
+	<!-- quando o cursor sair do campo senha, consulta-se a validade do login/senha -->
+	Senha: <input type=text id=senha name=senha onfocusout="analisarSenha()"> <br>
+
+	<!-- área de imagens de controle de verificação de login/senha -->
+	<div id="espera"><img src=/static/waiting2.gif width="24"></div>
+	<div id="ok"><img src=/static/ok.gif width="24"></div>
+	<div id="error"><img src=/static/error.png width="24"></div>
+
+	<!-- outros dados -->
+	Nome: <input type=text name=nome> <br>
+	Telefone: <input type=text name=telefone> <br>
+	Endereço: <textarea name=endereco></textarea>
+	<input type=submit value=Cadastrar>
+
+
+
+	<hr>
+	(deve-se informar login=admin e senha=123 para obter sucesso)
+
+	<script> // início de código javascript
+
+		// oculta imagens
+		mudarVisibilidade("espera", "none");
+		mudarVisibilidade("ok", "none");
+		mudarVisibilidade("error", "none");
+
+		// função que altera visibilidade de um elemento
+		function mudarVisibilidade(elemento, visibilidade) {
+			// encontra o elemento
+			var espera = document.getElementById(elemento);
+			// altera a visibilidade
+			espera.style.display = visibilidade;
+		}
+
+		// função que verifica se uma senha está correta
+		function analisarSenha() {
+			// obtém valores de login e senha
+			var login = document.getElementById("login").value;
+			var senha = document.getElementById("senha").value;
+
+			// se ambos os dados estão preenchidos
+			if (login && senha) {
+
+				// define a url de consulta
+				var site = "/prelogin?login=" +
+					//var site = "http://www.hylson.com/temp15/myservice3.php?login="+
+					login + "&senha=" + senha;
+
+				// ativa barra de progresso e imagens de resultado
+				mudarVisibilidade("espera", "block");
+				mudarVisibilidade("ok", "none");
+				mudarVisibilidade("error", "none");
+
+				// faz a chamada http POST
+				//var res = httpGet(site);
+				var res = httpPost();
+			}
+		}
+
+		// função que faz chamada http get
+		function httpGet(endereco) {
+			var req = new XMLHttpRequest(); // objeto que faz chamada http
+			// definir função executada quando a propriedade readyState mudar
+			req.onreadystatechange = function () {
+				// se a requisição foi concluída, a resposta está pronta e a requisição deu certo
+				if (this.readyState == 4 && this.status == 200) {
+					// se a resposta não for indefinida
+					if (typeof this.responseText !== 'undefined') {
+						// converte a resposta para json
+						var myArr = JSON.parse(this.responseText);
+						// altera as figuras de acordo com a resposta
+						informaResultado(myArr);
+						//alert(myArr)
+					}
+				}
+			};
+			// define os parâmetros da chamada http get! (true define chamada assíncrona)
+			req.open("GET", endereco, true);
+			// envia a requisição
+			req.send();
+		}
+
+		function httpPost() {
+			// https://stackoverflow.com/questions/9713058/send-post-data-using-xmlhttprequest
+
+			var http = new XMLHttpRequest();
+			var url = '/prelogin';
+
+			var campo_login = document.getElementById('login').value;
+			var campo_senha = document.getElementById('senha').value;
+
+			var params = "login=" + campo_login + "&senha=" + campo_senha;
+			http.open('POST', url, true);
+
+			//monta cabeçalho da requisição
+			http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+			// prepara função a ser chamada quando houver o retorno
+			http.onreadystatechange = function () {
+				if (http.readyState == 4 && http.status == 200) {
+					if (typeof http.responseText !== 'undefined') {
+						// converte a resposta para json
+						alert(http.responseText);
+						var resp = JSON.stringify(http.responseText);
+						alert(resp);
+						var myArr = JSON.parse(resp);
+						// altera as figuras de acordo com a resposta
+						informaResultado(myArr);
+						alert(myArr);
+					}
+				}
+			}
+			http.send(params);
+		}
+
+
+
+		// função para manipular imagens
+		function informaResultado(conteudo) {
+			try {
+				// se o resultado da requisição deu certo
+				if (conteudo['message'] === 'ok') {
+					// mostra a figura de ok
+					mudarVisibilidade("ok", "block");
+				} else {
+					// mostra a figura de erro
+					mudarVisibilidade("error", "block");
+				}
+				// oculta ícone de progresso
+				mudarVisibilidade("espera", "none");
+			}
+			catch (e) { } // não trata erros de conteúdo inválido
+		}
+
+	</script>
+
+</body>
+
+</html>
