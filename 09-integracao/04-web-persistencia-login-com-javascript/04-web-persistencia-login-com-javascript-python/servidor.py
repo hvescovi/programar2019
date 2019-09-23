@@ -96,6 +96,7 @@ def logout():
 def exemplo1():
     return render_template("exemplo1.html")
 
+# ação que recebe o login diretamente da chamada javascript
 @app.route("/prelogin", methods=['POST'])
 def prelogin():
     # receber as informações de login e senha
@@ -103,8 +104,8 @@ def prelogin():
     senha = request.form["senha"]
     # verificar se a combinação é válida
     if login == 'admin' and senha == '123':
-        return "{'message':'ok'}"
+        return '{"message":"ok"}'
     else:
-        return "{'message': 'error'}"
+        return '{"message":"error"}'
 
 app.run(debug=True)

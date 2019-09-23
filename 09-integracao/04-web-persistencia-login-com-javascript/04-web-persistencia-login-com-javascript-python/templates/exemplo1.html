@@ -6,7 +6,6 @@
 <body>
 	<h1>Cadastro</h1>
 
-
 	Login: <input type=text id=login name=login> <br>
 
 	<!-- quando o cursor sair do campo senha, consulta-se a validade do login/senha -->
@@ -22,8 +21,6 @@
 	Telefone: <input type=text name=telefone> <br>
 	Endereço: <textarea name=endereco></textarea>
 	<input type=submit value=Cadastrar>
-
-
 
 	<hr>
 	(deve-se informar login=admin e senha=123 para obter sucesso)
@@ -53,9 +50,8 @@
 			if (login && senha) {
 
 				// define a url de consulta
-				var site = "/prelogin?login=" +
-					//var site = "http://www.hylson.com/temp15/myservice3.php?login="+
-					login + "&senha=" + senha;
+				var site = "/prelogin"
+				var parametros = "login=" + login + "&senha=" + senha;
 
 				// ativa barra de progresso e imagens de resultado
 				mudarVisibilidade("espera", "block");
@@ -63,13 +59,12 @@
 				mudarVisibilidade("error", "none");
 
 				// faz a chamada http POST
-				//var res = httpGet(site);
-				var res = httpPost();
+				var res = fazer_chamada_http(site, parametros, "POST");
 			}
 		}
 
 		// função que faz chamada http get
-		function httpGet(endereco) {
+		function fazer_chamada_http(endereco, parametros, get_ou_post) {
 			var req = new XMLHttpRequest(); // objeto que faz chamada http
 			// definir função executada quando a propriedade readyState mudar
 			req.onreadystatechange = function () {
@@ -81,50 +76,20 @@
 						var myArr = JSON.parse(this.responseText);
 						// altera as figuras de acordo com a resposta
 						informaResultado(myArr);
-						//alert(myArr)
 					}
 				}
 			};
+
 			// define os parâmetros da chamada http get! (true define chamada assíncrona)
-			req.open("GET", endereco, true);
-			// envia a requisição
-			req.send();
-		}
+			req.open(get_ou_post, endereco, true);
 
-		function httpPost() {
-			// https://stackoverflow.com/questions/9713058/send-post-data-using-xmlhttprequest
-
-			var http = new XMLHttpRequest();
-			var url = '/prelogin';
-
-			var campo_login = document.getElementById('login').value;
-			var campo_senha = document.getElementById('senha').value;
-
-			var params = "login=" + campo_login + "&senha=" + campo_senha;
-			http.open('POST', url, true);
-
-			//monta cabeçalho da requisição
-			http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-			// prepara função a ser chamada quando houver o retorno
-			http.onreadystatechange = function () {
-				if (http.readyState == 4 && http.status == 200) {
-					if (typeof http.responseText !== 'undefined') {
-						// converte a resposta para json
-						alert(http.responseText);
-						var resp = JSON.stringify(http.responseText);
-						alert(resp);
-						var myArr = JSON.parse(resp);
-						// altera as figuras de acordo com a resposta
-						informaResultado(myArr);
-						alert(myArr);
-					}
-				}
+			if (get_ou_post == "POST") {
+				//monta cabeçalho da requisição
+				req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 			}
-			http.send(params);
+			// envia os parâmetros junto à requisição
+			req.send(parametros);
 		}
-
-
 
 		// função para manipular imagens
 		function informaResultado(conteudo) {
