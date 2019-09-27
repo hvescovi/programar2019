@@ -1,0 +1,54 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-image: url("top.jpg");
+  height: 42px;
+}
+footer{
+  position: fixed;
+  bottom: 0;
+    background-color: yellow;
+  width: 100%;
+  height: 18px;
+}
+.blue{
+  background-color: lightblue;
+}
+.green{
+  background-color: lightgreen;
+}
+.goLeft{
+  float: left;
+}
+.maxHeight{
+  height: calc(100vh - 42px - 18px);
+}
+.textoCabecalho {
+  font-size: xx-large;
+  text-shadow: 3px 2px red;
+  color: white;
+  padding-left: 8px;
+}
+
+a.menu:link {
+  background-color: lightblue;
+  color: black;
+  padding: 12px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+a.menu:hover{
+  background-color: green;
+}
+
+#conteudo {
+  padding-top: 10px;
+}
+
+.newLine {
+  background-color: lightblue;
+}

@@ -1,0 +1,42 @@
+/* webdes-10 */
+
+.lightgray {
+  background-color: lightgray;
+}
+
+label {
+  /* opcao 1: */
+  /*display: block; *
+
+  /* opcao 2 */
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  /*background-color: lightgreen;*/
+
+}
+label:after { content: ": " }
+
+#container {
+  width: 570px;
+  background-color: yellow;
+  /* margin:auto; soh na tela de teste */
+  /*border: 2px solid blue;*/
+}
+form {
+  /*width: 90%;*/
+  /*margin:auto;*/
+}
+button {
+  /*margin-left: 250px;*/
+}
+
+/* centralizar botão: centraliza como texto numa div container */
+.textCenter {
+  text-align: center;
+  /*background-color: red;*/
+}
+
+form div {
+  border: 0;
+}

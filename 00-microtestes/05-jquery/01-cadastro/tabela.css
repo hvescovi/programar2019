@@ -1,0 +1,14 @@
+#table{
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+.row{
+  display: table-row;
+}
+.cell{
+  display: table-cell;
+}
+div {
+  border: 1px solid green;
+}

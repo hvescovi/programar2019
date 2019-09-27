@@ -1,0 +1,58 @@
+<link rel=stylesheet href=form.css />
+
+<script>
+
+  $(document).ready(function(){
+
+    $("#adicionar").click(function(){
+
+     
+
+      var produto = $("#produto").val();
+      var preco = $("#preco").val();
+      var unidade = $("#unidade").val();
+
+      $.get("http://www.hylson.com/service.php?produto="+produto+"&preco="+preco+"&unidade="+unidade, function(data){
+        var elem = $("#form-incluir");
+        elem.fadeOut(1500, function(){
+          elem.html(data);
+          elem.fadeIn(1500, function(){
+            var tab = $('#table', window.parent.document);
+            tab.append("<div class='row newLine' id=linha-x>"+
+              "<div class=cell>"+produto+"</div>"+
+              "<div class=cell>"+preco+"</div>"+
+              "<div class=cell>"+unidade+"</div>"+
+              "<div class=cell>excluir</div>"+
+            "</div>");
+          }).delay(4000).fadeOut(1500);
+        });
+      });
+      return false;
+    });
+  });
+
+</script>
+
+<div id=container>
+
+<form class=lightgray>
+  <fieldset>
+    <legend>Inclusão de Produto</legend>
+    <div>
+    <label for=produto>Produto</label>
+    <input type=text name=produto size=40 id=produto>
+  </div>
+  <div>
+    <label for=preco>Preço (R$)</label>
+    <input type=text name=preco size=10 id=preco>
+  </div>
+  <div>
+    <label for=unidade>Unidade</label>
+    <input type=text name=unidade size=15 id=unidade>
+  </div>
+  </fieldset>
+  <div class=textCenter>
+    <button id=adicionar>Enviar</button>
+  </div>
+</form>
+</div>

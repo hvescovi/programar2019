@@ -1,0 +1,68 @@
+
+<script>
+
+  $(document).ready(function(){
+
+     $(".acaoExcluir").click(function(){
+
+       var eu = $(this);
+       var id = eu.attr("id");
+       var partes = id.split("-"); // link-exclui-n
+       var n = partes[2];
+
+       var linha = $("#linha-"+n);
+
+       $.get("http://www.hylson.com/service.php?codigo="+n, function(data){
+         linha.fadeOut(500, function(){
+           linha.html(data);
+           linha.fadeIn(500).delay(600).fadeOut(500);
+         });
+       });
+
+     });
+
+     $("#link-incluir").click(function(){
+       $("#form-incluir").hide();
+       $("#form-incluir").load("03-form-incluir.html").fadeIn(1700);
+     });
+
+  });
+
+</script>
+<link rel=stylesheet href=tabela.css />
+
+<div id=table>
+
+  <div class=row>
+    <a href=# id=link-incluir>Incluir</a>
+    <div id=form-incluir></div>
+  </div>
+
+  <div class=row id=linha-10>
+    <div class=cell>Produto</div>
+    <div class=cell>Preço</div>
+    <div class=cell>Unidade</div>
+    <div class=cell>Operação</div>
+  </div>
+
+  <div class=row id=linha-13>
+    <div class=cell>Laranja</div>
+    <div class=cell>2.68</div>
+    <div class=cell>Kg</div>
+    <div class=cell><a href=# class=acaoExcluir id=link-exclui-13>Excluir</a></div>
+  </div>
+
+  <div class=row id=linha-20>
+    <div class=cell>Sabão</div>
+    <div class=cell>8</div>
+    <div class=cell>Pacote 2kg</div>
+    <div class=cell><a href=# class=acaoExcluir id=link-exclui-20>Excluir</a></div>
+  </div>
+
+  <div class=row id=linha-28>
+    <div class=cell>Tomate</div>
+    <div class=cell>1.68</div>
+    <div class=cell>Kg</div>
+    <div class=cell><a href=# class=acaoExcluir id=link-exclui-28>Excluir</a></div>
+  </div>
+</div>
