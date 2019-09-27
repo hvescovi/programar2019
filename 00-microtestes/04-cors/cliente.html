@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Listagem de Pessoas</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        $.ajax({
+            url: 'http://localhost:5050/run',
+            contentType: 'application/json',
+            cache: false,
+            method: 'POST',
+            dataType: 'json',
+            data: JSON.stringify({
+                id: 'test',
+                command: 'echo michael'
+            }),
+            success: function (data) {
+                console.log(data);
+            }
+        });</script>
+</head>
+
+<body>
+    
+
+    teste
+
+    </script>
+
+</body>
+
+</html>

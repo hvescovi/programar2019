@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Listagem de Pessoas</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        $.ajax({
+            url: 'http://localhost:4999/listar_pessoas',
+            contentType: 'application/json',
+            cache: false,
+            method: 'GET',
+            dataType: 'json',
+            success: function (resultado) {
+                alert(resultado);
+                pessoas = JSON.parse(resultado) //$.parseJSON(resultado);
+                //pessoas = resultado['lista'];
+                alert(pessoas)
+                //pessoas = $.parseJSON(resultado);
+                // pegue a lista de pessoas
+                // percorra as pessoas
+                //for (pessoa in pessoas) {
+                //    alert(pessoa['nome']);
+               // }
+                // adicione o nome da pessoa na div apropriada
+                //    $('#div_pessoas').append(pessoa["nome"]+"<br>");
+                //}
+            }
+        });</script>
+</head>
+
+<body>
+
+
+    teste
+
+    </script>
+
+</body>
+
+</html>
