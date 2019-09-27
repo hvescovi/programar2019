@@ -3,25 +3,38 @@
 
 <head>
     <title>Listagem de Pessoas</title>
+
+    <!-- https://stackoverflow.com/questions/37914180/vm6031-uncaught-syntaxerror-unexpected-token-o-in-json-at-position-1 -->
     <script src="jquery-3.4.1.min.js"></script>
     <script>
         $.ajax({
             url: 'http://localhost:4999/listar_pessoas',
-            contentType: 'application/json',
+            //contentType: 'application/json',
             cache: false,
             method: 'GET',
-            dataType: 'json',
+            //dataType: 'json',
+            dataType: 'html',
             success: function (resultado) {
                 alert(resultado);
-                pessoas = JSON.parse(resultado) //$.parseJSON(resultado);
+                //pessoas = JSON.parse(resultado) 
+                pessoas = $.parseJSON(resultado);
+                for(var i in pessoas){
+                    alert(i);
+                    for (x in i){
+                        alert(x);
+                    }
+                }
+                //pessoas = jQuery.getJSON(resultado)
                 //pessoas = resultado['lista'];
-                alert(pessoas)
+                //alert(pessoas)
                 //pessoas = $.parseJSON(resultado);
                 // pegue a lista de pessoas
                 // percorra as pessoas
-                //for (pessoa in pessoas) {
+                //lista = pessoas[0]
+                //alert(lista)
+                //for (pessoa in pessoas['lista']) {
                 //    alert(pessoa['nome']);
-               // }
+               //    }
                 // adicione o nome da pessoa na div apropriada
                 //    $('#div_pessoas').append(pessoa["nome"]+"<br>");
                 //}

@@ -4,6 +4,10 @@ from flask_cors import CORS
 from modelo import Pessoa
 from playhouse.shortcuts import model_to_dict
 
+# necessário instalar:
+# pip3 install flask_cors
+#
+
 #from task_executor import *
 
 app = Flask(__name__)
