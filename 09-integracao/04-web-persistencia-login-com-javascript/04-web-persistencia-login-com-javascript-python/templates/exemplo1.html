@@ -111,13 +111,13 @@
 				if (http.readyState == 4 && http.status == 200) {
 					if (typeof http.responseText !== 'undefined') {
 						// converte a resposta para json
-						alert(http.responseText);
-						var resp = JSON.stringify(http.responseText);
-						alert(resp);
-						var myArr = JSON.parse(resp);
+						//alert(http.responseText);
+						//var resp = JSON.stringify(http.responseText);
+						//alert(resp);
+						//var myArr = JSON.parse(resp);
 						// altera as figuras de acordo com a resposta
 						informaResultado(myArr);
-						alert(myArr);
+						//alert(myArr);
 					}
 				}
 			}
@@ -130,7 +130,7 @@
 		function informaResultado(conteudo) {
 			try {
 				// se o resultado da requisição deu certo
-				if (conteudo['message'] === 'ok') {
+				if (conteudo['message'] == 'ok') || (conteudo == "{message:'ok'}") {
 					// mostra a figura de ok
 					mudarVisibilidade("ok", "block");
 				} else {
