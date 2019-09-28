@@ -18,23 +18,10 @@
                 alert(resultado);
                 //pessoas = JSON.parse(resultado) 
                 pessoas = $.parseJSON(resultado);
-                for(var i in pessoas){
-                    alert(i);
-                    for (x in i){
-                        alert(x);
-                    }
+                ps = pessoas['lista'];
+                for (var i in ps) {
+                    alert(ps[i]['nome']);
                 }
-                //pessoas = jQuery.getJSON(resultado)
-                //pessoas = resultado['lista'];
-                //alert(pessoas)
-                //pessoas = $.parseJSON(resultado);
-                // pegue a lista de pessoas
-                // percorra as pessoas
-                //lista = pessoas[0]
-                //alert(lista)
-                //for (pessoa in pessoas['lista']) {
-                //    alert(pessoa['nome']);
-               //    }
                 // adicione o nome da pessoa na div apropriada
                 //    $('#div_pessoas').append(pessoa["nome"]+"<br>");
                 //}
