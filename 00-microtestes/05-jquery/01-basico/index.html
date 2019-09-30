@@ -9,11 +9,23 @@
   <link rel=stylesheet href=estilo.css />
 
   <!-- importação da biblioteca jquery, diretamente do site do jquery -->
-  <script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> <!-- início do javascript que utiliza jquery -->
-<script>
+  <script src=https://code.jquery.com/jquery-3.4.1.min.js> </script>
+</head>
 
+<body>
+  <div id=conteudo></div>
+  <hr>
+  Digite aqui o novo texto:
+  <input type=text id=novo>
+  <button id=alterar>Alterar</button>
+  <hr id=linha2>
+  <img id=mickey src=mickey.png height=128>
+</body>
+
+<!-- início do javascript que utiliza jquery -->
+<script>
   // bucrocracia: função para ser executada quando a página estiver pronta
-  $(document).ready(function () {
+  $(function () { // sintaxe antiga: $(document).ready(function () {
 
     // queremos colocar algum texto no interior da div
     $('#conteudo').text("Olá, este conteúdo foi inserido por javascript " +
@@ -27,7 +39,6 @@
 
       // coloca esse novo texto na div
       $('#conteudo').text(digitado);
-
     });
 
     // quando clicar no mickey, ele e uma linha irão desaparecer
@@ -37,19 +48,6 @@
     });
 
   }); // fim do meu script 
-
 </script>
-
-</head>
-
-<body>
-  <div id=conteudo></div>
-  <hr>
-  Digite aqui o novo texto:
-  <input type=text id=novo>
-  <button id=alterar>Alterar</button>
-  <hr id=linha2>
-  <img id=mickey src=mickey.png height=128>
-</body>
 
 </html>
