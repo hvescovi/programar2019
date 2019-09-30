@@ -4,12 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Title of the document</title>
-
-  <!-- conexão com uma folha de estilos -->
-  <link rel=stylesheet href=estilo.css />
-
-  <!-- importação da biblioteca jquery, diretamente do site do jquery -->
-  <script src=https://code.jquery.com/jquery-3.4.1.min.js> </script>
+  <link rel=stylesheet href=estilo.css /> <!-- conexão com uma folha de estilos -->
 </head>
 
 <body>
@@ -22,32 +17,30 @@
   <img id=mickey src=mickey.png height=128>
 </body>
 
-<!-- início do javascript que utiliza jquery -->
+<!-- importação da biblioteca jquery, diretamente do site do jquery -->
+<script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+
+<! -- início do script personalizado -->
 <script>
-  // bucrocracia: função para ser executada quando a página estiver pronta
-  $(function () { // sintaxe antiga: $(document).ready(function () {
+  // queremos colocar algum texto no interior da div
+  $('#conteudo').text("Olá, este conteúdo foi inserido por javascript " +
+    "com uso de jquery. Clique no mickey!");
 
-    // queremos colocar algum texto no interior da div
-    $('#conteudo').text("Olá, este conteúdo foi inserido por javascript " +
-      "com uso de jquery. Clique no mickey!");
+  // quando clicar no botão, o que acontecerá?
+  $("#alterar").click(function () {
 
-    // quando clicar no botão, o que acontecerá?
-    $("#alterar").click(function () {
+    // pega o conteúdo que está na caixa de texto
+    var digitado = $('#novo').val();
 
-      // pega o conteúdo que está na caixa de texto
-      var digitado = $('#novo').val();
+    // coloca esse novo texto na div
+    $('#conteudo').text(digitado);
+  });
 
-      // coloca esse novo texto na div
-      $('#conteudo').text(digitado);
-    });
-
-    // quando clicar no mickey, ele e uma linha irão desaparecer
-    $("#mickey").click(function () {
-      $(this).fadeOut(2500);
-      $("#linha2").fadeOut(2500);
-    });
-
-  }); // fim do meu script 
+  // quando clicar no mickey, ele e uma linha irão desaparecer
+  $("#mickey").click(function () {
+    $(this).fadeOut(2500);
+    $("#linha2").fadeOut(2500);
+  });
 </script>
 
 </html>
