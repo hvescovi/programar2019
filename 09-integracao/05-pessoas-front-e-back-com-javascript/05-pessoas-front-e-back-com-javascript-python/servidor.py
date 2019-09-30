@@ -6,9 +6,6 @@ from playhouse.shortcuts import model_to_dict
 
 # necessário instalar:
 # pip3 install flask_cors
-#
-
-#from task_executor import *
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -21,7 +18,6 @@ def inicio():
         mimetype='text/plain',
     )
     return response
-
 
 @app.route('/listar_pessoas')
 def post():
