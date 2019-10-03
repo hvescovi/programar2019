@@ -1,0 +1,224 @@
+DROP DATABASE if EXISTS aeroporto;
+CREATE DATABASE aeroporto CHARSET latin1 COLLATE latin1_general_cs;
+USE aeroporto;
+
+CREATE TABLE passageiro(
+	nome_passageiro VARCHAR(50) NOT NULL,
+	cpf_passageiro VARCHAR(11) PRIMARY KEY
+);
+
+CREATE TABLE empresa(
+	nome_empresa VARCHAR(30) PRIMARY KEY
+);
+
+CREATE TABLE categoria(
+	nome_categoria VARCHAR(30) PRIMARY KEY
+);
+
+CREATE TABLE aviao(
+	nome_aviao VARCHAR(30) PRIMARY KEY,
+	qtd_max_passageiro INT NOT NULL,
+	qtd_colaborador INT NOT NULL,
+	nome_categoria VARCHAR(30) NOT NULL,
+	peso_max_bagagem FLOAT(5,2) NOT NULL,
+	nome_empresa VARCHAR(30) NOT NULL,
+	FOREIGN KEY (nome_empresa) REFERENCES empresa(nome_empresa),
+	FOREIGN KEY (nome_categoria) REFERENCES categoria(nome_categoria)
+);
+
+CREATE TABLE voo(
+	id_voo INT PRIMARY KEY auto_increment,
+	horario_embarque TIME NOT NULL,
+	data_voo DATE NOT NULL,
+	plataforma VARCHAR(5) NOT NULL,
+	destino VARCHAR(50) NOT NULL,
+	nome_aviao VARCHAR(30) NOT NULL,
+	FOREIGN KEY (nome_aviao) REFERENCES aviao(nome_aviao)
+);
+
+CREATE TABLE viagem(
+	codigo_voo INT NOT NULL,
+	cpf_passageiro VARCHAR(11) NOT NULL,
+	PRIMARY KEY (codigo_voo, cpf_passageiro),
+	FOREIGN KEY (codigo_voo) REFERENCES voo(id_voo),
+	FOREIGN KEY (cpf_passageiro) REFERENCES passageiro(cpf_passageiro)
+);
+
+CREATE TABLE bagagem(
+	id_bagagem INT auto_increment PRIMARY KEY,
+	codigo_bagagem VARCHAR(10) NOT NULL,
+	peso_bagagem FLOAT(5,2) NOT NULL,
+	codigo_voo INT NOT NULL,
+	cpf_passageiro VARCHAR(11) NOT NULL,
+	FOREIGN KEY (codigo_voo,cpf_passageiro) REFERENCES viagem(codigo_voo,cpf_passageiro)
+);
+
+INSERT INTO passageiro VALUES ('passageiro1','00000000000');
+INSERT INTO passageiro VALUES ('passageiro2','00000000001');
+INSERT INTO passageiro VALUES ('passageiro3','00000000002');
+INSERT INTO passageiro VALUES ('passageiro4','00000000003');
+INSERT INTO passageiro VALUES ('passageiro5','00000000004');
+INSERT INTO passageiro VALUES ('passageiro6','00000000005');
+INSERT INTO passageiro VALUES ('passageiro7','00000000006');
+INSERT INTO passageiro VALUES ('passageiro8','00000000007');
+INSERT INTO passageiro VALUES ('passageiro9','00000000008');
+INSERT INTO passageiro VALUES ('passageiro10','00000000009');
+INSERT INTO passageiro VALUES ('passageiro11','00000000010');
+INSERT INTO passageiro VALUES ('passageiro12','00000000011');
+INSERT INTO passageiro VALUES ('passageiro13','00000000012');
+INSERT INTO passageiro VALUES ('passageiro14','00000000013');
+INSERT INTO passageiro VALUES ('passageiro15','00000000014');
+INSERT INTO passageiro VALUES ('passageiro16','00000000015');
+
+INSERT INTO empresa VALUES ('Tam');
+INSERT INTO empresa VALUES ('Azul');
+INSERT INTO empresa VALUES ('Gol');
+
+INSERT INTO categoria VALUES ('1º classe');
+INSERT INTO categoria VALUES ('2º classe');
+INSERT INTO categoria VALUES ('Transporte');
+
+INSERT INTO aviao VALUES ('AT1',100,5,'1º classe',500,'Tam');
+INSERT INTO aviao VALUES ('AT2',150,5,'2º classe',800,'Tam');
+INSERT INTO aviao VALUES ('AG1',130,6,'1º classe',560,'Gol');
+INSERT INTO aviao VALUES ('AG2',180,6,'2º classe',850,'Gol');
+INSERT INTO aviao VALUES ('AA1',80,5,'1º classe',400,'Azul');
+INSERT INTO aviao VALUES ('AA2',100,5,'2º classe',600,'Azul');
+INSERT INTO aviao VALUES ('AT3',10,4,'Transporte',900,'Tam');
+INSERT INTO aviao VALUES ('AG3',10,5,'Transporte',950,'Gol');
+
+INSERT INTO voo VALUES (0,'12:00','2019/05/06','02','Rodeio/SC','AT1');
+INSERT INTO voo VALUES (0,'12:00','2019/05/06','03','Blumenau/SC','AG1');
+INSERT INTO voo VALUES (0,'10:00','2019/05/07','01','Rodeio/SC','AA1');
+INSERT INTO voo VALUES (0,'11:00','2019/05/07','04','Blumenau/SC','AG2');
+INSERT INTO voo VALUES (0,'11:00','2019/05/07','02','Rodeio/SC','AT2');
+INSERT INTO voo VALUES (0,'11:00','2019/05/07','03','Blumenau/SC','AA2');
+INSERT INTO voo VALUES (0,'15:00','2019/05/07','05','Rodeio/SC','AT3');
+INSERT INTO voo VALUES (0,'15:00','2019/05/07','06','Blumenau/SC','AG3');
+
+INSERT INTO viagem VALUES (1,'00000000000');
+INSERT INTO viagem VALUES (1,'00000000001');
+INSERT INTO viagem VALUES (1,'00000000002');
+INSERT INTO viagem VALUES (1,'00000000003');
+INSERT INTO viagem VALUES (1,'00000000004');
+
+INSERT INTO viagem VALUES (2,'00000000005');
+INSERT INTO viagem VALUES (2,'00000000006');
+INSERT INTO viagem VALUES (2,'00000000007');
+INSERT INTO viagem VALUES (2,'00000000008');
+
+INSERT INTO viagem VALUES (3,'00000000010');
+INSERT INTO viagem VALUES (3,'00000000011');
+INSERT INTO viagem VALUES (3,'00000000012');
+INSERT INTO viagem VALUES (3,'00000000013');
+INSERT INTO viagem VALUES (3,'00000000014');
+
+INSERT INTO viagem VALUES (4,'00000000000');
+INSERT INTO viagem VALUES (4,'00000000002');
+INSERT INTO viagem VALUES (4,'00000000004');
+INSERT INTO viagem VALUES (4,'00000000006');
+INSERT INTO viagem VALUES (4,'00000000008');
+
+INSERT INTO viagem VALUES (5,'00000000001');
+INSERT INTO viagem VALUES (5,'00000000003');
+INSERT INTO viagem VALUES (5,'00000000005');
+INSERT INTO viagem VALUES (5,'00000000007');
+INSERT INTO viagem VALUES (5,'00000000009');
+
+INSERT INTO viagem VALUES (6,'00000000009');
+INSERT INTO viagem VALUES (6,'00000000011');
+INSERT INTO viagem VALUES (6,'00000000013');
+INSERT INTO viagem VALUES (6,'00000000012');
+INSERT INTO viagem VALUES (6,'00000000005');
+INSERT INTO viagem VALUES (7,'00000000009');
+INSERT INTO viagem VALUES (7,'00000000010');
+INSERT INTO viagem VALUES (8,'00000000011');
+INSERT INTO viagem VALUES (8,'00000000012');
+INSERT INTO viagem VALUES (8,'00000000014');
+
+INSERT INTO bagagem VALUES (0,'AD450',10.5,1,'00000000000');
+INSERT INTO bagagem VALUES (0,'GHJKK',8,1,'00000000001');
+INSERT INTO bagagem VALUES (0,'GHJK2',4,1,'00000000001');
+INSERT INTO bagagem VALUES (0,'ERTYU',7.4,1,'00000000002');
+INSERT INTO bagagem VALUES (0,'WERTY',6.3,1,'00000000003');
+INSERT INTO bagagem VALUES (0,'QWERT',20.9,1,'00000000004');
+9
+INSERT INTO bagagem VALUES (0,'RTYUI',5,2,'00000000005');
+INSERT INTO bagagem VALUES (0,'RTYU2',5,2,'00000000005');
+INSERT INTO bagagem VALUES (0,'TYUIO',4.8,2,'00000000006');
+INSERT INTO bagagem VALUES (0,'YUIOP',13,2,'00000000007');
+INSERT INTO bagagem VALUES (0,'UIOPA',25,2,'00000000008');
+INSERT INTO bagagem VALUES (0,'UIOP2',25,2,'00000000008');
+
+INSERT INTO bagagem VALUES (0,'ASDFG',10.5,3,'00000000010');
+INSERT INTO bagagem VALUES (0,'ASDF2',5.4,3,'00000000010');
+INSERT INTO bagagem VALUES (0,'SDFGH',14,3,'00000000011');
+INSERT INTO bagagem VALUES (0,'SDFG2',26,3,'00000000011');
+INSERT INTO bagagem VALUES (0,'DFGHJ',23,3,'00000000012');
+INSERT INTO bagagem VALUES (0,'DFGH2',20.1,3,'00000000012');
+INSERT INTO bagagem VALUES (0,'FGHJK',14.7,3,'00000000013');
+INSERT INTO bagagem VALUES (0,'GHJKL',18.9,3,'00000000014');
+INSERT INTO bagagem VALUES (0,'GHJK2',5.1,3,'00000000014');
+
+INSERT INTO bagagem VALUES (0,'KLÇZX',10,5,'00000000001');
+INSERT INTO bagagem VALUES (0,'ZXCVB',10,5,'00000000003');
+INSERT INTO bagagem VALUES (0,'VBNMK',10,5,'00000000005');
+INSERT INTO bagagem VALUES (0,'QAZXC',10,5,'00000000007');
+INSERT INTO bagagem VALUES (0,'QAZXC',10,5,'00000000009');
+
+SELECT COUNT(cpf_passageiro) FROM passageiro WHERE passageiro.cpf_passageiro IN (SELECT cpf_passageiro FROM viagem WHERE codigo_voo=1);
+SELECT COUNT(cpf_passageiro) FROM passageiro WHERE passageiro.cpf_passageiro IN (SELECT cpf_passageiro FROM viagem WHERE codigo_voo=2);
+SELECT COUNT(cpf_passageiro) FROM passageiro WHERE passageiro.cpf_passageiro IN (SELECT cpf_passageiro FROM viagem WHERE codigo_voo=3);
+SELECT COUNT(cpf_passageiro) FROM passageiro WHERE passageiro.cpf_passageiro IN (SELECT cpf_passageiro FROM viagem WHERE codigo_voo=4);
+SELECT COUNT(cpf_passageiro) FROM passageiro WHERE passageiro.cpf_passageiro IN (SELECT cpf_passageiro FROM viagem WHERE codigo_voo=5);
+SELECT COUNT(cpf_passageiro) FROM passageiro WHERE passageiro.cpf_passageiro IN (SELECT cpf_passageiro FROM viagem WHERE codigo_voo=6);
+SELECT COUNT(cpf_passageiro) FROM passageiro WHERE passageiro.cpf_passageiro IN (SELECT cpf_passageiro FROM viagem WHERE codigo_voo=7);
+SELECT COUNT(cpf_passageiro) FROM passageiro WHERE passageiro.cpf_passageiro IN (SELECT cpf_passageiro FROM viagem WHERE codigo_voo=8);
+
+SELECT v.id_voo, (
+	SELECT COUNT(*) FROM passageiro p,viagem vi WHERE p.cpf_passageiro = vi.cpf_passageiro AND vi.codigo_voo = v.id_voo
+) qt FROM voo v ORDER BY v.id_voo;
+
+SELECT pesobag.Total, 
+		 pesobag.id, 
+		 if(pesobag.Total < a.peso_max_bagagem, 'Dentro do Limite', 'Ultrapassou Limite') Resultado
+FROM (
+	SELECT v.id_voo id ,
+		SUM(peso_bagagem) Total 
+	FROM 
+		bagagem b,
+		voo v 
+	WHERE 
+		b.codigo_voo=v.id_voo
+	GROUP BY 
+		v.id_voo
+) pesobag,
+  voo vo,
+  aviao a
+WHERE 
+	vo.id_voo = pesobag.id
+AND 
+	vo.nome_aviao = a.nome_aviao;
+
+SELECT 
+	v.id_voo,((
+	SELECT
+		COUNT(*)
+	FROM 
+		passageiro p,
+		viagem vi
+	WHERE 
+		p.cpf_passageiro = vi.cpf_passageiro 
+	AND 
+		vi.codigo_voo = v.id_voo
+	) / (
+	SELECT 
+		qtd_max_passageiro
+	FROM 
+		aviao a
+	WHERE 
+		v.nome_aviao=a.nome_aviao
+	)) *100 porcentagem
+FROM
+	voo v
+ORDER BY v.id_voo;
