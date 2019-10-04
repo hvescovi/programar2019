@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title of the document</title>
+  <link id=estilo rel=stylesheet href=azul.css /> <!-- conexão com uma folha de estilos -->
+</head>
+
+<body>
+  <a href=# id=azul class=muda>azul</a> | 
+  <a href=# id=amarelo class=muda>amarelo</a> |
+  <a href=# id=verde class=muda>verde</a>
+  <hr>
+  Esta página pode ser alterada para apresentar o estilo mais conveniente.
+
+
+</body>
+
+<!-- importação da biblioteca jquery, diretamente do site do jquery -->
+<script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+
+<script>
+  // início do script personalizado
+  $('.muda').click(function () {
+    $('#estilo').attr('href', $(this).attr('id')+'.css');
+  });
+</script>
+
+</html>

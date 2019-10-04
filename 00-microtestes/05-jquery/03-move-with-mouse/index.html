@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title of the document</title>
+</head>
+
+<body>
+  Mova o mouse para mover o carro.
+  O clique do mouse liga e desliga a movimentação.
+  
+  <img id=carro src=car.png style="position:absolute"> 
+
+</body>
+
+<!-- importação da biblioteca jquery, diretamente do site do jquery -->
+<script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+
+<script>
+  // inicialmente, deve-se mover o carro
+  var mover = 1
+
+  // quando houver um movimento de mouse na janela atual
+  $(window).mousemove(function (event) {
+    
+    // é pra mover o carro?
+    if (mover == 1) {  
+      // posicione a imagem o local do mouse
+      $("#carro").css({ top: event.pageY, left: event.pageX});
+    }
+  });
+
+  // quando houver um clique na janela
+  $(window).click(function () {
+    // inverte a situação de mover o carro
+    mover == 1 ? mover = 0 : mover = 1;
+  });
+</script>
+
+</html>
