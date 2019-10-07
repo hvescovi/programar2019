@@ -1,0 +1,46 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+#container {
+	display: flex;
+	flex-direction: row;
+	height: 100vh;
+}
+
+#container > div {
+	width: 20%;
+	height: 0%;
+}
+
+#col-1 {
+	background: #333;
+	transition: 1s;
+}
+#col-2 {
+	background: #333;
+	transition: 1.25s;
+}
+#col-3 {
+	background: #333;
+	transition: 1.5s;
+}
+#col-4 {
+	background: #333;
+	transition: 1.75s;
+}
+#col-5 {
+	background: #333;
+	transition: 2s;
+}
+
+#col-3 > p {
+	color: white;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Nuvens</title>
+  <link rel=stylesheet href=estilo.css>
+  <style>
+
+  body{
+    font-family: 'Yu Gothic Medium';
+    font-size: 20px;
+    background-color:lightblue;
+    margin: 50px;
+  }
+
+  p{
+    text-align: center;
+  }
+
+  .nuvem1{
+    position:relative;
+    float:right; 
+  }
+
+  .nuvem2{
+    bottom:-125px;
+    position:relative; 
+    left:400px;
+  }
+
+  .nuvem3{
+    position: relative;
+    right:-700px;
+  }
+
+  .arco{
+    position: relative;
+    top:-200px;
+    width:100%; 
+    text-align: center; 
+  }
+
+  </style> 
+</head>
+
+
+<body>
+  <p id=frase>Nem o céu é o limite quando os sonhos são maiores que o próprio universo. </p>
+  <img class=nuvem src=nuvem.png height=128>
+  <div class="nuvem1">
+  <img class=nuvem src=nuvem.png height=128>
+  </div>
+
+  <div class="nuvem2">
+      <img class=nuvem src=nuvem.png height=128>
+  </div>
+  <div class="nuvem3">
+      <img class=nuvem src=nuvem.png height=128>
+  </div>
+
+  <div class="arco" id=arcoiris>
+      <img class=nuvem src=rainbow.png height=158 width="400">
+  </div>
+  
+
+</body>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+
+
+<script>
+ 
+  // oculta o arco iris quando a página abrir
+  $("#arcoiris").hide();
+ 
+  $(".nuvem").click(function () {
+    $(this).fadeOut(1000);
+    $(this).fadeIn(1000);
+  });
+
+  $("#frase").click(function () {
+    $("#arcoiris").fadeIn(10000);
+  });
+</script>
+
+</html>

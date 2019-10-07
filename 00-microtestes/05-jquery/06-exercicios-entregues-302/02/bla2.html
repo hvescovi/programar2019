@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title of the document</title>
+</head>
+
+<body>
+  
+  <img id=seta src=seta.png style="position:absolute; display: block"> 
+  <img id=regina src=regina.png style="position:absolute; display: none">
+
+  <hr>
+
+  <h1> Não CLIQUE EM NENHUM LUGAR DA TELA ESTÁ AVISADO</h1>
+
+  <hr>
+
+
+</body>
+
+<script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+
+<script>
+  // inicialmente, deve-se mover o carro
+  var mover = 1
+  // quando houver um movimento de mouse na janela atual
+  $(window).mousemove(function (event) {
+    
+    // é pra mover o carro?
+    if (mover == 1) {  
+      // posicione a imagem o local do mouse
+      $("#seta").css({ top: event.pageY, left: event.pageX});
+    }
+    else{
+      $("#regina").css({ top: event.pageY, left: event.pageX});
+    }
+    
+  });
+  // quando houver um clique na janela
+  $(window).click(function () {
+    if (mover == 1) {
+      mover = 0 ; 
+      $("#seta").css('display','none'); 
+      $("#regina").css('display','block'); 
+    } else {
+      mover = 1 ;
+      $("#seta").css('display','block');
+      $("#regina").css('display','none'); 
+    }
+
+  });
+</script>
+
+</html>

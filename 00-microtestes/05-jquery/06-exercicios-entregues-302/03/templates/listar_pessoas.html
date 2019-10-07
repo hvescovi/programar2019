@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listar Pessoas</title>
+</head>
+<body>
+	Pessoas <hr>
+	{%for p in usuario%}
+		{{p.nome}} | {{p.endereco}} | {{p.telefone}} | {%if session["Usuário"]%} <a href = "/excluir_pessoas?codigo={{p.codigo}}"> X </a> | <a href = "/abrir_alterar_pessoas?codigo={{p.codigo}}">Alterar Pessoa</a>{%endif%}
+		<br>
+    {%endfor%}
+    <br>
+    {%if session["Usuário"]%}
+    	<a href = "/abrir_formulario">Cadastrar Pessoa</a> |
+	{%endif%}
+	<br>
+	<a href="/">Página inicial</a>
+</body>
+</html>

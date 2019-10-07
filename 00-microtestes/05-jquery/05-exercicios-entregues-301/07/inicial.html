@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Testando</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link id=estilo rel=stylesheet href=azul.css />
+  <script type="text/javascript">
+    $(document).ready(function(){
+      let div = $("div");
+      div.animate({
+        width: "1000px",
+      }, "slow");
+      div.animate({
+        height: "500px",
+      });
+      div.animate({
+        left: "200px",
+      });
+      div.animate({
+        right: "-100px",
+      });
+      div.animate({
+        top: "100px",
+      });
+      div.animate({
+        width: "1100px",
+      });
+      div.animate({
+        height: "550px",
+      });
+      div.animate({
+        left: "-50px",
+      });
+
+    })
+  </script>
+</head>
+
+<body>
+  <div></div>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title of the document</title>
+  <link id=estilo rel=stylesheet href=azul.css /> 
+  <link rel=stylesheet href=estilo.css />
+</head>
+
+<body>
+  <a href=# id=azul class=muda>azul</a> | 
+  <a href=# id=amarelo class=muda>amarelo</a> |
+  <a href=# id=verde class=muda>verde</a>
+  <hr>
+  Esta página pode ser alterada para apresentar o estilo mais conveniente, além disto Mova o mouse para mover o carro.
+  O clique do mouse liga e desliga a movimentação.
+  
+  <img id=carro src=car.png style="position:absolute; display: block"> 
+  <img id=moto src=moto.png style="position:absolute; display: none">
+
+  <h1> Formulário é chato mesmo, mas olha vamos mexer com Java Script: </h1>
+
+    <div class="block">
+    <label>Nome: </label>
+    <input type="text" /> <img id=nome class=ajuda src=help.png width=24>
+  </div>
+  <div class="block">
+    <label>Endereço</label>
+    <textarea></textarea> <img id=endereco class=ajuda src=help.png width=24>
+  </div>
+  <div class="block">
+    <label>Telefone</label>
+    <input type="text" /> <img id=telefone class=ajuda src=help.png width=24>
+  </div>
+
+  <div id=ajuda-nome style="display:none; position:absolute">Digite o seu nome completo!</div>
+  <div id=ajuda-endereco style="display:none; position:absolute">O endereço deve ser por extenso.</div>
+  <div id=ajuda-telefone style="display:none; position:absolute">Por favor, dê preferência ao número do telefone celular.</div>
+</body>
+
+
+
+<!-- importação da biblioteca jquery, diretamente do site do jquery -->
+<script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+
+<script>
+  // início do script personalizado
+  $('.muda').click(function () {
+    $('#estilo').attr('href', $(this).attr('id')+'.css');
+  });
+</script>
+
+<script>
+  // inicialmente, deve-se mover o carro
+  var mover = 1
+  // quando houver um movimento de mouse na janela atual
+  $(window).mousemove(function (event) {
+    
+    // é pra mover o carro?
+    if (mover == 1) {  
+      // posicione a imagem o local do mouse
+      $("#carro").css({ top: event.pageY, left: event.pageX});
+    }
+    else{
+      $("#moto").css({ top: event.pageY, left: event.pageX});
+    }
+    
+  });
+  // quando houver um clique na janela
+  $(window).click(function () {
+    if (mover == 1) {
+      mover = 0 ; 
+      $("#carro").css('display','none'); 
+      $("#moto").css('display','block'); 
+    } else {
+      mover = 1 ;
+      $("#carro").css('display','block');
+      $("#moto").css('display','none'); 
+    }
+
+  });
+</script>
+
+<script>
+  // quando o mouse entrar na área da imagem de ajuda
+  $(".ajuda").mouseenter(function (event) {
+    // montar o id do texto de ajuda
+    var id_texto = "ajuda-" + $(this).attr("id");
+    // referencia o texto de ajuda respectivo
+    var elemento = $("#" + id_texto);
+    // posicione o texto de ajuda na posição do mouse
+    elemento.css({ top: event.pageY, left: event.pageX });
+    // torna o texto visível
+    elemento.show();
+  });
+  // quando o mouse sair na área da imagem de ajuda
+  $(".ajuda").mouseout(function (event) {
+    // montar o id do texto de ajuda
+    var id_texto = "ajuda-" + $(this).attr("id");
+    // referencia o texto de ajuda respectivo
+    var elemento = $("#" + id_texto);
+    // oculta o texto
+    elemento.hide();
+  });
+</script>
+
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Alterar Pessoas Formulário</title>
+</head>
+<body>
+    <h1> Formulário para Alterar Pessoas: </h1>
+    <form action=/alterar_pessoas>
+    	<br>
+    	nome:<input type=text name=nome value={{pessoa.nome}}>
+    	endereco:<input type=text name=endereco value={{pessoa.endereco}}>
+    	telefone:<input type=text name=telefone value={{pessoa.telefone}}>
+    	<input type=submit value=alterar>
+        <input value={{pessoa.codigo}} name=codigo type=hidden>
+    </form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title> Gato </title>
+    
+</head>
+<body>
+    <img id="gatinho" src=gato.jpeg height=128 style="position:absolute;">
+    <script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+</body>
+
+<script>
+
+var atual = 0;
+$(document).ready(function() {
+  $("#gatinho").click(function() {
+    //$("#gatinho").animate({
+    //  left: '250px'
+    //}, 200, function(){ 
+        atual = atual+100;
+        $("#gatinho").css( {left: atual});
+   //   $('#gatinho').hide();
+  //    $('.reset').show()
+    //});
+  });
+  $(".reset").on("click", function(){
+   // $('#gatinho').show();
+   // $(this).hide();
+   alert("BLA")
+    $("#gatinho").css('left', '0px');
+  });
+});
+
+</script>
+</html>

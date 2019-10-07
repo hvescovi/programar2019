@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title of the document</title>
+</head>
+
+<body>
+
+  <script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+
+  <script> 
+    $(document).ready(function(){
+      $("button").click(function(){
+        $("div").animate({left: '45%', height: '150px', width: '150px', color:"white"});
+      });
+    });
+  </script> 
+
+  <script> 
+  $(document).ready(function(){
+    $("button").click(function(){
+      $("div").animate({
+        height: 'toggle'
+      });
+    });
+  });
+  </script> 
+
+  <button>Tampe a gretchen</button>
+
+  <p>Tampe a Gretchen</p>
+  <div style="background:#98bf21;height:1px;width:1px;position:absolute;"></div>
+  <centeR>
+    <img src="gretchen.jpeg" alt="Minha Figura" width="100px" height="120px" align="middle">	
+  </center>
+</body>
+</html>

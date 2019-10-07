@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Início</title>
+</head>
+<body>
+
+	<h1>Página Inicial</h1>
+	{%if session["Usuário"]%}
+		<a href=/logout> Sair </a>
+	{%else%}
+		<a href=/form_login>Login</a><br>
+	{%endif%}
+	<br>
+	<a href ="/listar_pessoas"> Liste as pessoas </a>
+
+	<style type="text/css">
+		#botao {
+			position:absolute;
+			left:50%;
+			top:50%;
+			margin-left:-110px;
+			margin-top:-40px;
+			}
+	</style>
+
+	<button onmouseover="mOver(this)" onmouseout="mOut(this)" id="botao"> NÃO COLOQUE O MOUSE AQUI </button>
+
+	<div id="conteudo">
+	</div>
+
+</body>
+
+<script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+
+<script>
+	
+function mOver(obj)
+{
+	obj.innerHTML="POXA, VOCÊ COLOCOU!"
+	obj.innerHTML="<img src=/static/surpresa.jpeg height=20%>"
+}
+ 
+function mOut(obj)
+{
+	obj.innerHTML="NÃO COLOQUE O MOUSE AQUI"
+}
+	
+</script>
+</html>

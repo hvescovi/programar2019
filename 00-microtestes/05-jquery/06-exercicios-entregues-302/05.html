@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Usuários</title>
+    </head>
+    <body>
+        <div id='app'>
+            <input name = usuario type = text>
+            <button>Adicionar</button>
+            <ul id='ah'></ul>
+        </div>
+        <script>
+            var inputElement  = document.querySelector('#app input');
+            var buttonElement = document.querySelector('#app button');
+            var listaElement  = document.querySelector('#app ul');
+            var dados = JSON.parse(localStorage.getItem('ola')) || [];
+            function saveToStorage(){
+                localStorage.setItem("ola", JSON.stringify(dados));
+            };
+            function percorrerDados(){     
+                listaElement.innerHTML='';
+                for (i of dados){
+                    var dadoElement = document.createElement('li');
+                    var dadoText    = document.createTextNode(i);
+                    console.log(dados);
+                    dadoElement.appendChild(dadoText);
+                    listaElement.appendChild(dadoElement);
+                    saveToStorage();
+                }
+            }
+            
+            percorrerDados();
+            function adicionarDado(){
+                var texto = inputElement.value;
+                console.log(texto);
+                dados.push(texto);
+                texto.value='';
+                percorrerDados();
+                saveToStorage();
+            };
+            buttonElement.onclick = adicionarDado;
+        </script>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Brinque com o doguinho!</title>
+  <link rel=stylesheet href=estilo.css /> <!-- conexão com uma folha de estilos -->
+</head>
+
+<body>
+<style> 
+
+body {
+  background-image: url("gramado.jpg");
+  background-color: #cccccc;
+  background-size:cover;
+}
+
+</style>
+
+  <h3 style = "font-family:courier">
+
+   Mova o mouse para brincar com o doguinho!
+
+  </h3>
+
+  <img id=cachorro src=dog.jpg style="position:absolute" width="120">
+
+</body>
+<script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+
+<script>
+
+  var mover = 1
+  $(window).mousemove(function (event) {
+        if (mover == 1) {  
+      $("#cachorro").css({ top: event.pageY, left: event.pageX});
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+			
+
+	<h1>Calculadora de Fibonacci</h1>
+
+	Digitos: <input type=text id=dig name=digitos> <br> <br>
+	<button onclick="calcular()">Calcular</button>
+	<hr>
+	<p id = "fibo"></p>
+
+	<script>
+
+		function calcular() {
+			var fibon = [0,1];
+			var deposito = 1
+			var num_atual = 1
+			var num_anterior = 1
+			var dig = document.getElementById('dig').value;
+			while (fibon.length<dig) {
+			deposito = num_atual;
+			num_atual = num_atual + num_anterior;
+			num_anterior = deposito
+			fibon.push(num_anterior)
+			}
+			document.getElementById('fibo').textContent = fibon;
+		}
+	</script>
+
+</body>
+
+</html>

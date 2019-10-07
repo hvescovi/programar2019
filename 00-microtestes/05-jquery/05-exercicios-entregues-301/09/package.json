@@ -1,0 +1,31 @@
+{
+  "name": "testing_three",
+  "version": "1.0.0",
+  "description": "THREE.js playground.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derezzedex/testing_three.git"
+  },
+  "keywords": [
+    "three.js",
+    "socket.io",
+    "node"
+  ],
+  "author": "derezzedex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/derezzedex/testing_three/issues"
+  },
+  "homepage": "https://github.com/derezzedex/testing_three#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "noisejs": "^2.1.0",
+    "socket.io": "^2.1.1",
+    "three": "^0.94.0"
+  }
+}

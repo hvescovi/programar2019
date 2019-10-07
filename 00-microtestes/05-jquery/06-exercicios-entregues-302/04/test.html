@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>MeuSite</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+
+</head>
+<body>
+
+    <div id="bloco_principal">
+        
+        <div id="menu">
+            <a id="confirmar">Confirmar</a>
+        </div>
+        
+        <div id="opcoes">
+            <a id="link_fundo">Fundo</a>
+                <div id="fundo">
+                        Cor  <input id="cor_fundo" type="color">
+                </div>
+            
+            <a id="link_add">Add</a>
+                <div id="add">
+                    <textarea id="area_texto" rows="5" cols="22" placeholder="Digite o Conteudo"></textarea>
+                    <button id="add_titulo">Titulo</button>
+                    <button id="add_par">Paragrafo</button><br><br>
+                    Cor <input id="cor_elementos" type="color">                    
+                </div>
+            
+            <a id="link_remover">Remover</a>
+        
+        </div>
+    </div>
+
+    <img id="imagem_menu" src="flecha.png">
+    
+    <script src=https://code.jquery.com/jquery-3.4.1.min.js> </script>
+    <script>
+        
+        function f_remover(e){
+                if (remover_ativo == 1){
+                    $(e).remove();
+                };
+        };
+
+        
+        $("#fundo").fadeOut(0);
+        $("#add").fadeOut(0);
+        $("#imagem_menu").fadeOut(0);
+
+        var fundo_ativo = 0;
+        var add_ativo = 0;
+        var remover_ativo = 0;
+
+        $("#confirmar").click(function(){
+            $("#bloco_principal").slideToggle();
+            $("#imagem_menu").delay(450).fadeIn(0);
+        });
+
+        $("#imagem_menu").click(function(){
+            $("#imagem_menu").fadeOut(0);
+            $("#bloco_principal").slideToggle();
+        });
+
+        $("#link_fundo").click(function(){
+            if (fundo_ativo == 0){
+                $("#fundo").slideDown()
+                fundo_ativo = 1;}
+            else{
+            $("#fundo").slideUp();
+            fundo_ativo = 0};
+        });
+
+        $("#link_add").click(function(){
+            if (fundo_ativo == 0){
+                $("#add").slideDown()
+                fundo_ativo = 1;}
+            else{
+                $("#add").slideUp();
+                fundo_ativo = 0};
+        });
+
+        $('#cor_fundo').on('change', function () {
+            $("body").css('background-color', $(this).val());
+        });
+
+        $("#add_par").click(function(){
+            if ($.trim($("#area_texto").val()) != ""){ 
+            var code = $("<p onclick='f_remover(this)' style='float:justify;'></p>").text($.trim($("#area_texto").val()))
+                            .css("color", $("#cor_elementos").val());
+            $("body").append(code);}
+            else{
+                alert("Insira Um texto!");}
+        });
+        
+        $("#add_titulo").click(function(){
+            if ($.trim($("#area_texto").val()) != ""){ 
+            var code = $("<h1 onclick='f_remover(this)' style='float:justify'></h1>").text($.trim($("#area_texto").val()))
+                            .css("color", $("#cor_elementos").val());
+            $("body").append(code);}
+            else{
+                alert("Insira Um texto!");}
+        });
+
+        $("#link_remover").click(function(){
+            if (remover_ativo == 0){
+                remover_ativo = 1;
+                $("#link_remover").css("background-color","red");}
+            else{
+                remover_ativo = 0;
+                $("#link_remover").css("background-color","#2f4f4f");};
+        });
+    
+    </script>
+
+</body>
+</html>
