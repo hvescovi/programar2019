@@ -41,13 +41,13 @@
         $.ajax({
             url: 'http://localhost:4999/listar_pessoas',
             method: 'GET',
-            dataType: 'html',
+            dataType: 'text',
             success: function (resultado) {
                 alert(resultado);
-                pessoas = $.parseJSON(resultado); // converter para json
-                ps = pessoas['lista'];
-                for (var i in ps) { // i vale a posição no vetor
-                    $('#pessoas').append(ps[i]['nome']+"<br>");
+                dados_json = $.parseJSON(resultado); // converter para json
+                pessoas = dados_json['lista'];
+                for (var i in pessoas) { // i vale a posição no vetor
+                    $('#pessoas').append(pessoas[i]['nome']+"<br>");
                  }
             },
             error: function (resultado) {
