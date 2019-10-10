@@ -1,4 +1,4 @@
-Sexo;Estado Civil;Anos de estudo;Formação;Tempo de empresa;Unidade;Departamento;Cargo;Salário;Bônus
+sexo;estado_civil;anos_de_estudo;formacao;tempo_de_empresa;unidade;departamento;cargo;salario;bonus
 Masculino;Casado;14;Sócio-econômicas;19;Curitiba;Produção;Assistente;16,67;28,02
 Masculino;Viúvo;19;Sócio-econômicas;31;São Paulo;Vendas;Assistente;29,13;41,24
 Feminino;Casado;18;Sócio-econômicas;28;Rio de Janeiro;Financeiro;Assi ;21,8;16,88
