@@ -1,20 +1,36 @@
-from peewee import *
+$("#ler_json").click(function () {
+    $.ajax({
+        url: 'http://localhost:4999/listar_pessoas',
+        method: 'GET',
+        dataType: 'json',
+        success: function (resultado) {
+            alert(resultado);
+            pessoas = resultado.lista;
+            for (var i in pessoas) { //i vale a posição no vetor
+                $('#pessoas').append(pessoas[i].nome + "<br>");
+            }
+        },
+        error: function (resultado) {
+            alert("ocorreu algum erro na leitura dos dados: ", res);
+        }
+    });
+});
 
-arq = './pessoas-front-end.db'
-db = SqliteDatabase(arq)
-
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-class Pessoa(BaseModel):
-    nome = CharField()
-    endereco = CharField()
-    telefone = CharField()
-    
-if __name__ == "__main__":
-    db.connect()
-    db.create_tables([Pessoa])
-    joao = Pessoa.create(nome="Joao da Silva", 
-        endereco="Casa 9", telefone="3541-1230")
-    print(joao.nome, ",", joao.endereco, ",", joao.telefone)
+$("#ler_html").click(function () {
+    $.ajax({
+        url: 'http://localhost:4999/listar_pessoas',
+        method: 'GET',
+        dataType: 'text',
+        success: function (resultado) {
+            alert(resultado);
+            dados_json = $.parseJSON(resultado); // converter para json
+            pessoas = dados_json['lista'];
+            for (var i in pessoas) { // i vale a posição no vetor
+                $('#pessoas').append(pessoas[i]['nome']+"<br>");
+             }
+        },
+        error: function (resultado) {
+            alert("ocorreu algum erro na leitura dos dados: ", res);
+        }
+    });
+});
