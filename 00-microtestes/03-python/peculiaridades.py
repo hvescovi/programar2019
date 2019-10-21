@@ -59,6 +59,12 @@ for atual in pessoas: # cada pessoa será mapeada na variável ``atual''
 for i in range(0, 5):
     print(i) 
 
+# fazer uma lista com 5 números
+print(list(range(0, 5))) # [0, 1, 2, 3, 4]
+
+# faixa com passo negativo
+print(list(range(10, 1, -2))) # [10, 8, 6, 4, 2]
+
 #
 # while, break, continue
 #
