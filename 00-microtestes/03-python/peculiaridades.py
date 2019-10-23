@@ -23,7 +23,7 @@ else:
 # sep e end valem, por padrão: ' ' (espaço) e '\n', respectivamente
 print("que", "mensagem", "legal", sep=" :-) ", end='\n\n\nFIM\n')
 nome = "Pedro"
-print("Nome:", nome) # mostra 'Nome: Pedro'; a vírgula insere um espaço!
+print("Nome:",nome) # mostra 'Nome: Pedro'; a vírgula insere um espaço!
 print("Nome:"+nome) # mostra: 'Nome:Pedro'
 
 #
@@ -70,7 +70,7 @@ print(list(range(10, 1, -2))) # [10, 8, 6, 4, 2]
 #
 i = 0
 while i < 20: 
-    i+=1 # python não suporta i++ ou ++i
+    i+=1 # (i = i + 1) python não suporta i++ ou ++i
     print("\nanalisando:",i, end='') # imprime sem EOF
     info = "" # informações a serem mostradas
     if i % 17 == 0: # interrompe se for divisível por 13
@@ -142,9 +142,9 @@ lista = inclui_na_lista_e_mostra("Segundo", lista)
 inclui_na_lista_e_mostra("Terceiro", lista)
 
 # define função sem retorno
-def inclui_e_mostra(elemento, lista):
-  lista.append(elemento) # continua modificando a lista por referência
-  print(lista)
+def inclui_e_mostra(elemento, parametro_lista):
+  parametro_lista.append(elemento) # continua modificando a lista por referência
+  print(parametro_lista)
 
 lista = [] # lista é MUTÁVEL
 inclui_e_mostra("Primeiro", lista)
@@ -183,7 +183,7 @@ lista = ['a', 'b', 'c']
 outra = lista.copy() # copiou um tipo mutável
 outra.remove('b')
 print(outra)
-print(lista)
+print(lista) # permanece intacta
 
 # tudo certo abaixo
 lista = ['lobo','tubarao']
@@ -288,7 +288,7 @@ print(joao, zezinho, pedrinho) # AB+, AB+, A+
 joao.ts = "O+" # mudou o tipo do pai
 print(joao, zezinho, pedrinho) # O+, AB+, A+
 
-Pai.ts = "O+" # mudou o tipo da CLASSE pai!!
+Pai.ts = "O+" # mudou o valor do atributo da CLASSE pai!!
 print(joao, zezinho, pedrinho) # O+, O+, A+
 
 #
