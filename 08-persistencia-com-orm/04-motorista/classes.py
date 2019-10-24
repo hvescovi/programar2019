@@ -2,7 +2,7 @@ from peewee import *
 import os
 
 # conexão com o banco de dados Sqlite
-arq = './pessoa.db'
+arq = 'pessoa.db'
 db = SqliteDatabase(arq)
 
 # declaração da classe herdando características da classe Model
@@ -46,8 +46,8 @@ if __name__ == '__main__': # teste das classes e da persistência
         exit() # finaliza o programa
 
     # criar uma pessoa e mostrar suas informações
-    jo = Pessoa.create(nome = "Joao", endereco = "Casa 9", telefone = "99332-1212")
-    print(jo)
+    #jo = Pessoa.create(nome = "Joao", endereco = "Casa 9", telefone = "99332-1212")
+    #print(jo)
     mot = Motorista.create(nome = "Joao", endereco = "Casa 9", 
         telefone = "99332-1212", cnh="1234556")
     print(mot)
