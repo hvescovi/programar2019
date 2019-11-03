@@ -1,0 +1,49 @@
+body {
+    background-color: lightgray;
+}
+
+label {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+}
+
+#html_form_incluir_pessoa {
+    display: none;
+    background-color: lightskyblue;
+}
+
+#div_btn_incluir_pessoa {
+    text-align: center;
+}
+
+#success,
+#error {
+    display: none;
+    width: 20px;
+}
+
+.rTable {
+    display: table;
+}
+
+.rTableRow {
+    display: table-row;
+}
+
+.rTableHeading {
+    display: table-header-group;
+}
+
+.rTableBody {
+    display: table-row-group;
+}
+
+.rTableFoot {
+    display: table-footer-group;
+}
+
+.rTableCell,
+.rTableHead {
+    display: table-cell;
+}

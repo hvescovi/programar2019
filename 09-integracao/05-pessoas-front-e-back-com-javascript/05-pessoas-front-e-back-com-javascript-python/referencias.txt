@@ -1,0 +1,12 @@
+alinhar campos e rótulos:
+https://stackoverflow.com/questions/9686538/align-labels-in-form-next-to-input
+
+mostrar div com tamanho que não exceda o conteúdo da div:
+https://stackoverflow.com/questions/450903/how-to-make-div-not-larger-than-its-contents
+
+recebimeno de dados dados json via POST no python:
+https://stackoverflow.com/questions/20001229/how-to-get-posted-json-in-flask
+
+criar listagem em formato de tabelas usando div
+https://stackoverflow.com/questions/3053205/how-create-table-only-using-div-tag-and-css
+https://html-cleaner.com/features/replace-html-table-tags-with-divs/

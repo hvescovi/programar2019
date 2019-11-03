@@ -21,4 +21,25 @@ def listar():
     # retorno!
     return response
 
+# curl -d '{"nome":"joao"}' -X POST http://localhost:4999/incluir_pessoa
+@app.route('/incluir_pessoa', methods=['post'])
+def incluir_pessoa():
+    # prepara a resposta padrão otimista
+    response = jsonify({"message": "ok","details":"ok"})
+    try:
+        # pega os dados informados
+        dados = request.get_json(force=True)
+        # cria uma pessoa
+        Pessoa.create(nome = dados['nome'], 
+            endereco = dados['endereco'], 
+            telefone = dados['telefone'])
+    except Exception as e:
+        # resposta de erro
+        response = jsonify({"message": "error","details":str(e)})
+        
+    # informa que outras origens podem acessar os dados desde servidor/serviço
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    # retorno!
+    return response
+
 app.run(debug=True, port=4999)

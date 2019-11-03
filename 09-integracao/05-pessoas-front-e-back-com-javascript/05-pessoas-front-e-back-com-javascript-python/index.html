@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Listagem de Pessoas</title>
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+</head>
+
+<body>
+    <h1>Cadastro de Pessoas</h1>
+    <button id="btn_listar_pessoas">Listar</button>
+    <button id="btn_form_incluir_pessoa">Incluir</button>
+    <hr>
+
+    <!-- form de inclusão a seguir: inicialmente oculto-->
+    <div id=html_form_incluir_pessoa>
+        <fieldset>
+            <legend>Nova pessoa</legend>
+            <div>
+                <label for="nome">Nome:</label> <input type=text id=nome value="Joao">
+            </div>
+            <div>
+                <label for="endereco">Endereço:</label> <textarea id=endereco>Rua 12</textarea>
+            </div>
+            <div>
+                <label for="telefone">Telefone:</label> <input type=text id=telefone value="2323">
+            </div>
+            <div id="div_btn_incluir_pessoa">
+                <button id="btn_incluir_pessoa">Incluir</button>
+                <img id=success src=img/success.gif />
+                <img id=error src=img/error.gif />
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="tabela_pessoas" class="rTable">
+        <!-- inserir as pessoas aqui -->
+    </div>
+
+</body>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/meuscript.js"></script>
+
+</html>
