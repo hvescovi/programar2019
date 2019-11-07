@@ -1,0 +1,50 @@
+# 61 # R: Sim está correto.
+
+# 62 # R: Concede privilégio ao usuário chefe para inserir na tabela vendedor.
+
+# 63 #
+
+USE vendas; # Acessa o database vendas #
+
+# Criar os usuários do exercíco #
+CREATE USER gerente IDENTIFIED BY 'gerente';
+CREATE USER vendedor IDENTIFIED BY 'vendedor';
+CREATE USER cliente IDENTIFIED BY 'cliente';
+
+# Cria as tabelas do exercício #
+CREATE TABLE CLIENTE(
+	COD_CLIENTE INTEGER PRIMARY KEY,
+	NOM_CLIENTE VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE PEDIDO(
+	NUM_PEDIDO INTEGER PRIMARY KEY,
+	COD_CLIENTE INTEGER NOT NULL,
+	FOREIGN KEY (COD_CLIENTE) REFERENCES CLIENTE(COD_CLIENTE)
+);
+
+CREATE TABLE PRODUTO(
+	NUM_PEDIDO INTEGER PRIMARY KEY,
+	COD_PRODUTO INTEGER NOT NULL
+);
+
+# Concede os privilégios para os usuário #
+GRANT CREATE VIEW ON vendas.* TO vendedor;
+GRANT INSERT, UPDATE ON vendas.PEDIDO TO vendedor;
+GRANT INSERT, UPDATE ON vendas.CLIENTE TO vendedor;
+GRANT SELECT, INSERT, UPDATE, DELETE ON vendas.* TO gerente;
+
+# Criar visõe para o usuário cliente e concede privilégio para esses objetos #
+CREATE VIEW vCLIENTE AS SELECT * FROM vendas.CLIENTE WHERE COD_CLIENTE = 1;
+CREATE VIEW vPEDIDO AS SELECT * FROM vendas.PEDIDO WHERE COD_CLIENTE = 1;
+GRANT SELECT ON vendas.vCLIENTE TO cliente;
+GRANT SELECT ON vendas.vPEDIDO TO cliente;
+
+INSERT INTO vendas.CLIENTE (COD_CLIENTE, NOM_CLIENTE) VALUES (1, 'Esganado');
+
+/*
+mysql> select * from vendas.cliente; 
+ERROR 1142 (42000): SELECT command denied to user 'vendedor'@'localhost' for table 'cliente'
+mysql> delete from vendas.cliente where cod_cliente = 1;
+ERROR 1142 (42000): DELETE command denied to user 'vendedor'@'localhost' for table 'cliente'
+*/

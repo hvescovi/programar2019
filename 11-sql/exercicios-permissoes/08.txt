@@ -1,0 +1,46 @@
+Nomes: Matheus Moreira
+       Diego Leon
+      
+Exercicio 61 - ) Sim, devido a que temos os parametros na ordem correta. Comando (Revoke), privilegios, objeto a ser retirado e o usuario.
+
+Exercicio 62 - ) Garante os privilegios para que um usuario (Chefe) possa realizar INSERT na tabela (Vendas).
+
+Exercicio 63 - ) 
+(b)
+
+CREATE DATABASE Vendas;
+CREATE TABLE Pedido;
+CREATE TABLE Cliente;
+CREATE TABLE Produto;
+
+CREATE USER vendedor;
+CREATE USER gerente;
+CREATE USER cliente;
+
+GRANT ALTER, INSERT ON Pedido TO vendedor;
+GRANT ALTER, INSERT ON Cliente TO vendedor;
+GRANT SELECT ON Cliente*, Pedido*, Produto* TO gerente;
+GRANT SELECT ON Pedido TO cliente WHERE ID EQUALS clienteID;
+
+(c)
+
+MySql -u Root -p ;
+
+>INSERT ON Cliente(ClienteID, ClienteNome) WHERE ("20","Petrolina");
+
+MySql -u Vendedor -p Gremio10;
+
+>DROP USER WHERE ClienteID EQUALS ("20");
+>INSERT ON CLIENTE (ClienteID, ClienteNome) WHERE ("69","Joaquin Phoenix");
+
+
+
+
+
+
+
+
+
+
+
+

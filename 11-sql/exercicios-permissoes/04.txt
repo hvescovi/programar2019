@@ -1,0 +1,43 @@
+61. O comando REVOKE UPDATE ON Vendas FROM maria; está sintaticamente correto?
+Explique.
+R: O comando está sintaticamente correto, pois segue o padrão SQL.
+
+62. Explique o que faz o seguinte comando: GRANT INSERT ON Vendedor TO chefe?
+
+R: O comando concede a permissão para inserir novos registros na tabela Vendedor ao usuário chefe.
+
+63.
+
+a) R: O vendedor pode inserir e alterar as tabelas Pedido e Cliente.
+
+O gerente tem a permissão de selecionar, inserir, atualizar e deletar registros nas tabelas Cliente, Pedido e Produto.
+
+GRANT SELECT ON *.* TO 'username'@'host_or_wildcard' IDENTIFIED BY 'password';
+
+b) R:
+
+CREATE DATABASE BD2;
+USE BD2;
+CREATE USER CLIENTE;
+CREATE USER VENDEDOR;
+CREATE USER GERENTE;
+GRANT ALL PRIVILEGES ON *.* TO GERENTE@LOCALHOST;
+GRANT INSERT, UPDATE ON PEDIDO TO VENDEDOR@LOCALHOST;
+GRANT INSERT, UPDATE ON CLIENTE TO VENDEDOR@LOCALHOST;
+GRANT SELECT ON *.* TO CLIENTE@LOCALHOST;
+
+c)
+INSERT INTO PRODUTO VALUES('BATATA', 10);
+INSERT INTO PRODUTO VALUES('CENOURA', 10);
+
+Comando: INSERT INTO PRODUTO VALUES('CANDIRU', 5);
+Gerente: deu boa
+Vendedor: deu boa
+Cliente: deu pau
+Comando: DELETE FROM PRODUTO WHERE DS_PRODUTO = 'BATATA';
+Gerente: deu boa
+Vendedor: deu pau
+Cliente: deu pau
+
+	
+
