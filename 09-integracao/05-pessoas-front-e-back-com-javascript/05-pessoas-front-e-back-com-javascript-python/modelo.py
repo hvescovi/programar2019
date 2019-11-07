@@ -1,7 +1,9 @@
 from peewee import *
 import os
 
-arq = './pessoas-backend.db'
+# usar referência absoluta
+# https://github.com/coleifer/peewee/issues/657
+arq = '/home/friend/01-github/programar/09-integracao/05-pessoas-front-e-back-com-javascript/05-pessoas-front-e-back-com-javascript-python/pessoas-backend.db'
 db = SqliteDatabase(arq)
 
 class BaseModel(Model):

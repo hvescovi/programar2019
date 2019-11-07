@@ -41,7 +41,7 @@ $("#btn_incluir_pessoa").click(function() {
         type: 'POST',
         dataType: 'json', // vou receber em json,
         data: dados, //JSON.stringify({ "message": "ok" }), // dados a enviar
-        // contentType: "application/json",
+        //contentType: "application/json",
         success: function(resultado) {
             //alert(resultado)
             //alert(resultado.message)
