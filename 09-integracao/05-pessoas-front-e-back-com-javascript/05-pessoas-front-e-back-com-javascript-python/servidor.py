@@ -42,4 +42,17 @@ def incluir_pessoa():
     # retorno!
     return response
 
+@app.route('/excluir_pessoa')
+def excluir_pessoa():
+    # obtém o id da pessoa
+    id_pessoa = request.args.get('id_pessoa')
+    # apaga a pessoa
+    Pessoa.delete_by_id(id_pessoa)
+    # prepara a resposta
+    response = jsonify({"message": "ok"})
+    # informa que outras origens podem acessar os dados desde servidor/serviço
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    # retorno!
+    return response
+
 app.run(debug=True, port=4999)
