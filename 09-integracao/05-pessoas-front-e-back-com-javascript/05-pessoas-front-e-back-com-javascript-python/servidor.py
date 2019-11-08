@@ -6,9 +6,11 @@ from playhouse.shortcuts import model_to_dict
 # inicializa o servidor
 app = Flask(__name__)
 
+
 @app.route('/', methods=['GET'])
 def inicio():
     return "backend do sistema de pessoas; <a href=/listar_pessoas>API listar pessoas</a>"
+
 
 @app.route('/listar_pessoas')
 def listar():
@@ -25,22 +27,23 @@ def listar():
 @app.route('/incluir_pessoa', methods=['post'])
 def incluir_pessoa():
     # prepara a resposta padrão otimista
-    response = jsonify({"message": "ok","details":"ok"})
+    response = jsonify({"message": "ok", "details": "ok"})
     try:
         # pega os dados informados
         dados = request.get_json(force=True)
         # cria uma pessoa
-        Pessoa.create(nome = dados['nome'], 
-            endereco = dados['endereco'], 
-            telefone = dados['telefone'])
+        Pessoa.create(nome=dados['nome'],
+                      endereco=dados['endereco'],
+                      telefone=dados['telefone'])
     except Exception as e:
         # resposta de erro
-        response = jsonify({"message": "error","details":str(e)})
-        
+        response = jsonify({"message": "error", "details": str(e)})
+
     # informa que outras origens podem acessar os dados desde servidor/serviço
     response.headers.add('Access-Control-Allow-Origin', '*')
     # retorno!
     return response
+
 
 @app.route('/excluir_pessoa')
 def excluir_pessoa():
@@ -54,5 +57,31 @@ def excluir_pessoa():
     response.headers.add('Access-Control-Allow-Origin', '*')
     # retorno!
     return response
+
+
+@app.route('/alterar_pessoa', methods=['post'])
+def alterar_pessoa():
+    # prepara a resposta padrão otimista
+    response = jsonify({"message": "ok", "details": "ok"})
+    try:
+        # pega os dados informados
+        dados = request.get_json(force=True)
+        # busca a pessoa antiga
+        p = Pessoa.get_by_id(dados['id'])
+        # atualiza os dados
+        p.nome = dados['nome']
+        p.endereco = dados['endereco']
+        p.telefone = dados['telefone']
+        # atualiza
+        p.save()
+    except Exception as e:
+        # resposta de erro
+        response = jsonify({"message": "error", "details": str(e)})
+
+    # informa que outras origens podem acessar os dados desde servidor/serviço
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    # retorno!
+    return response
+
 
 app.run(debug=True, port=4999)
