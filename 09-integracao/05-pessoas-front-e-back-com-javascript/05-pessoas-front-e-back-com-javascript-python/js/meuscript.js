@@ -15,10 +15,11 @@ $("#btn_listar_pessoas").click(function() {
                 '</div>';
             $('#tabela_pessoas').append(cabecalho);
             for (var i in pessoas) { //i vale a posição no vetor
-                $('#tabela_pessoas').append('<div class="rTableRow" id=linha' + pessoas[i].id + '>');
-                $('#tabela_pessoas').append(ajustar_pessoa_em_linha_de_tabela(
-                    pessoas[i].id, pessoas[i].nome, pessoas[i].endereco, pessoas[i].telefone));
-                $('#tabela_pessoas').append("</div>");
+                lin = '<div class="rTableRow" id=linha' + pessoas[i].id + '>'+
+                      ajustar_pessoa_em_linha_de_tabela(
+                    pessoas[i].id, pessoas[i].nome, pessoas[i].endereco, pessoas[i].telefone) +
+                    '</div>';
+                $('#tabela_pessoas').append(lin);
             }
         },
         error: function() {
@@ -127,7 +128,6 @@ $(document).on("click", ".form_alterar_pessoa", function() {
     var eu = $(this).attr('id');
     // obtém o id da pessoa
     var id_pessoa = eu.substring(5); // altp_ID
-
     // preenche a div da linha com dados editáveis
     $("#linha" + id_pessoa).html(ajustar_pessoa_em_linha_de_tabela_modo_edicao(id_pessoa));
 });
