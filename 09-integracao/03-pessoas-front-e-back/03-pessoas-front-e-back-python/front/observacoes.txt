@@ -1,0 +1,10 @@
+
+# https://www.twilio.com/blog/2016/12/http-requests-in-python-3.html
+# pip3 install requests
+# o requests é necessário para fazer chamadas get no python (acessar o backend)
+
+# requests usando python:
+https://www.geeksforgeeks.org/get-post-requests-using-python/
+
+enviando dados diretamente em json
+https://stackoverflow.com/questions/9733638/post-json-using-python-requests

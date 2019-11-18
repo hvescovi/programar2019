@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Listagem de Pessoas</title>
-    </head>
-    <body>
-        <a href=/>Início</a> <br><br>
 
-        {% for pessoa in lista: %}
-            {{ pessoa.nome }} | {{ pessoa.endereco }} | {{ pessoa.telefone }} 
-            <br>
-        {% endfor %} 
-        
-    </body>
+<head>
+    <title>Listagem de Pessoas</title>
+</head>
+
+<body>
+    <a href=/form_incluir_pessoa>Incluir</a> |
+    <a href=/>Início</a> <br><br> {% for pessoa in lista: %} {{ pessoa.nome }} | {{ pessoa.endereco }} | {{ pessoa.telefone }}
+    <a href=/excluir_pessoa?id={{ pessoa.id }}>Excluir</a>
+    <a href=/form_alterar_pessoa?id={{ pessoa.id }}>Alterar</a><br> {% endfor %}
+    <br>
+</body>
+
 </html>

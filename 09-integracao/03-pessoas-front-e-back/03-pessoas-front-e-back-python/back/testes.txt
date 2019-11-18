@@ -1,0 +1,6 @@
+curl localhost:4999/listar_pessoas
+curl -d '{"nome":"maria","endereco":"beco das flores","telefone":"123456"}' -X post http://localhost:4999/incluir_pessoa
+curl localhost:4999/excluir_pessoa?id=8
+curl -d '{"id":"7","nome":"maria3","endereco":"beco3 das flores","telefone":"32123456"}' -X post http://localhost:4999/alterar_pessoa
+
+
