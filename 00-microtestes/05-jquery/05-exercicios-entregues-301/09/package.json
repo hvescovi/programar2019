@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/derezzedex/testing_three#readme",
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "noisejs": "^2.1.0",
     "socket.io": "^2.1.1",
     "three": "^0.94.0"
